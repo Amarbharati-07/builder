@@ -113,7 +113,7 @@ export function EnquiryPopup({ isOpen, onClose }: EnquiryPopupProps) {
             />
 
             {/* Phone Field */}
-            <div className="flex gap-2 w-full">
+            <div className="flex gap-2 w-full min-w-0">
               <select
                 value={selectedCountry.code}
                 onChange={(e) => {
@@ -121,7 +121,7 @@ export function EnquiryPopup({ isOpen, onClose }: EnquiryPopupProps) {
                   if (country) setSelectedCountry(country);
                 }}
                 data-testid="select-country"
-                className="border border-gray-300 dark:border-gray-600 rounded px-2 py-2.5 bg-white dark:bg-slate-900 text-gray-600 dark:text-gray-400 font-medium focus:outline-none focus:border-amber-600 transition cursor-pointer box-border text-xs sm:text-sm"
+                className="border border-gray-300 dark:border-gray-600 rounded px-2 py-2.5 bg-white dark:bg-slate-900 text-gray-600 dark:text-gray-400 font-medium focus:outline-none focus:border-amber-600 transition cursor-pointer box-border text-xs flex-shrink-0 whitespace-nowrap"
               >
                 {countries.map((country) => (
                   <option key={`${country.code}-${country.name}`} value={country.code} data-country={country.name}>
@@ -136,7 +136,7 @@ export function EnquiryPopup({ isOpen, onClose }: EnquiryPopupProps) {
                 onChange={(e) => setPhone(e.target.value)}
                 required
                 data-testid="input-phone"
-                className="flex-1 border border-gray-300 dark:border-gray-600 rounded px-4 py-2.5 bg-white dark:bg-slate-900 text-gray-700 dark:text-gray-200 placeholder:text-gray-400 dark:placeholder:text-gray-500 focus:outline-none focus:border-amber-600 transition box-border text-sm"
+                className="flex-1 min-w-0 border border-gray-300 dark:border-gray-600 rounded px-3 py-2.5 bg-white dark:bg-slate-900 text-gray-700 dark:text-gray-200 placeholder:text-gray-400 dark:placeholder:text-gray-500 focus:outline-none focus:border-amber-600 transition box-border text-sm"
               />
             </div>
           </div>
