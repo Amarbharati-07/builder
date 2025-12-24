@@ -40,7 +40,7 @@ export default function ProjectDetails() {
         <div className="absolute bottom-0 left-0 w-full p-8 md:p-16 bg-gradient-to-t from-black via-black/50 to-transparent text-white">
           <div className="container mx-auto">
             <Link href="/projects">
-              <Button variant="link" className="text-white/80 p-0 mb-4 hover:text-white">
+              <Button className="text-white/80 p-0 mb-4 hover:text-white bg-transparent hover:bg-transparent">
                 <ArrowLeft className="mr-2 h-4 w-4" /> Back to Projects
               </Button>
             </Link>
