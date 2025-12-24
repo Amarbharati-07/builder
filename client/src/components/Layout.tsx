@@ -5,12 +5,14 @@ import { useState, useEffect } from "react";
 import ChatWidget from "./ChatWidget";
 import { Button } from "@/components/ui/button";
 import { EnquiryModal } from "./EnquiryModal";
+import { EnquiryPopup } from "./EnquiryPopup";
 
 export function Layout({ children }: { children: React.ReactNode }) {
   const [location] = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isEnquiryOpen, setIsEnquiryOpen] = useState(false);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,6 +20,15 @@ export function Layout({ children }: { children: React.ReactNode }) {
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Show enquiry popup every 20 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIsPopupOpen(true);
+    }, 20000); // 20000ms = 20 seconds
+
+    return () => clearInterval(interval);
   }, []);
 
   const navLinks = [
@@ -192,6 +203,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
       {/* Enquiry Modal */}
       <EnquiryModal isOpen={isEnquiryOpen} onClose={() => setIsEnquiryOpen(false)} />
+
+      {/* Enquiry Popup - Auto appears every 20 seconds */}
+      <EnquiryPopup isOpen={isPopupOpen} onClose={() => setIsPopupOpen(false)} />
     </div>
   );
 }
