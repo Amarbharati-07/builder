@@ -20,11 +20,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Show enquiry modal every 1.5 minutes (90 seconds)
+  // Show enquiry modal every 40 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       setIsEnquiryOpen(true);
-    }, 90000); // 90000ms = 1.5 minutes
+    }, 40000); // 40000ms = 40 seconds
 
     return () => clearInterval(interval);
   }, []);
