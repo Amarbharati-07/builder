@@ -103,7 +103,10 @@ async function seedDatabase() {
       slug: "grand-horizon",
       status: "ongoing",
       location: "Downtown Skyline",
+      address: "Plot 42, Sector 15, Downtown Skyline, Mumbai 400001",
+      landmark: "Near City Convention Center",
       price: "Starts from ₹2.5 Cr",
+      pricePerSqft: "₹18,500/sqft",
       type: "Residential",
       description: "Experience the pinnacle of luxury living at The Grand Horizon. Offering panoramic views of the city skyline, these ultra-spacious 3 & 4 BHK residences are designed for those who have arrived.",
       amenities: ["Infinity Pool", "Sky Lounge", "Private Theatre", "Concierge Service", "Spa & Wellness"],
@@ -113,7 +116,9 @@ async function seedDatabase() {
       ],
       coverImage: "https://images.unsplash.com/photo-1600596542815-2495db98dada?auto=format&fit=crop&q=80",
       reraId: "P51800001234",
-      possessionDate: "Dec 2026"
+      reraQRCode: "https://via.placeholder.com/150",
+      possessionDate: "Dec 2026",
+      floorPlans: []
     });
 
     await storage.createProject({
@@ -121,7 +126,10 @@ async function seedDatabase() {
       slug: "emerald-gardens",
       status: "completed",
       location: "Green Valley",
+      address: "Survey No. 78, Green Valley Road, Pune 411045",
+      landmark: "Opposite Metro Station",
       price: "Sold Out",
+      pricePerSqft: "₹12,000/sqft",
       type: "Residential",
       description: "A serene oasis in the middle of the bustling city. Emerald Gardens offers 2 BHK apartments surrounded by lush greenery and landscaped gardens.",
       amenities: ["Jogging Track", "Children's Play Area", "Clubhouse", "Yoga Deck"],
@@ -131,7 +139,9 @@ async function seedDatabase() {
       ],
       coverImage: "https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&q=80",
       reraId: "P51800005678",
-      possessionDate: "Ready to Move"
+      reraQRCode: "https://via.placeholder.com/150",
+      possessionDate: "Ready to Move",
+      floorPlans: []
     });
 
     await storage.createProject({
@@ -139,7 +149,10 @@ async function seedDatabase() {
       slug: "tech-plaza",
       status: "upcoming",
       location: "Business District",
+      address: "Tower A, Business Park, Bangalore 560001",
+      landmark: "Adjacent to Tech Hub Mall",
       price: "Starts from ₹15,000/sqft",
+      pricePerSqft: "₹15,000/sqft",
       type: "Commercial",
       description: "Next-gen office spaces for the modern enterprise. Smart building features, high-speed elevators, and premium retail spaces.",
       amenities: ["24/7 Security", "High-speed Internet", "Conference Rooms", "Food Court"],
@@ -148,7 +161,9 @@ async function seedDatabase() {
       ],
       coverImage: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80",
       reraId: "P51800009012",
-      possessionDate: "Coming Soon"
+      reraQRCode: "https://via.placeholder.com/150",
+      possessionDate: "Coming Soon",
+      floorPlans: []
     });
   }
 
