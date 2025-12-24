@@ -66,12 +66,12 @@ export function EnquiryPopup({ isOpen, onClose }: EnquiryPopupProps) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-      <div className="bg-white dark:bg-slate-950 rounded-lg shadow-2xl max-w-md w-full mx-4 relative">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+      <div className="bg-white dark:bg-slate-950 rounded-lg shadow-2xl w-full max-w-sm overflow-hidden relative">
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-6 right-6 text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300 transition"
+          className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300 transition z-10"
           data-testid="button-close-popup"
         >
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -81,43 +81,39 @@ export function EnquiryPopup({ isOpen, onClose }: EnquiryPopupProps) {
         </button>
 
         {/* Header */}
-        <div className="px-8 pt-8 pb-6">
-          <h2 className="text-2xl font-serif text-gray-600 dark:text-gray-300 text-center">
+        <div className="px-6 pt-8 pb-4">
+          <h2 className="text-xl sm:text-2xl font-serif text-gray-600 dark:text-gray-300 text-center pr-8">
             PLEASE ENTER YOUR DETAILS BELOW
           </h2>
         </div>
 
         {/* Form */}
-        <form onSubmit={handleSubmit} className="px-8 pb-8">
-          <div className="space-y-4">
+        <form onSubmit={handleSubmit} className="px-6 pb-6">
+          <div className="space-y-3">
             {/* Name Field */}
-            <div>
-              <input
-                type="text"
-                placeholder="Name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                required
-                data-testid="input-name"
-                className="w-full border border-gray-300 dark:border-gray-600 rounded px-4 py-3 bg-white dark:bg-slate-900 text-gray-700 dark:text-gray-200 placeholder:text-gray-400 dark:placeholder:text-gray-500 focus:outline-none focus:border-amber-600 transition"
-              />
-            </div>
+            <input
+              type="text"
+              placeholder="Name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+              data-testid="input-name"
+              className="w-full border border-gray-300 dark:border-gray-600 rounded px-4 py-2.5 bg-white dark:bg-slate-900 text-gray-700 dark:text-gray-200 placeholder:text-gray-400 dark:placeholder:text-gray-500 focus:outline-none focus:border-amber-600 transition box-border text-sm"
+            />
 
             {/* Email Field */}
-            <div>
-              <input
-                type="email"
-                placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                data-testid="input-email"
-                className="w-full border border-gray-300 dark:border-gray-600 rounded px-4 py-3 bg-white dark:bg-slate-900 text-gray-700 dark:text-gray-200 placeholder:text-gray-400 dark:placeholder:text-gray-500 focus:outline-none focus:border-amber-600 transition"
-              />
-            </div>
+            <input
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              data-testid="input-email"
+              className="w-full border border-gray-300 dark:border-gray-600 rounded px-4 py-2.5 bg-white dark:bg-slate-900 text-gray-700 dark:text-gray-200 placeholder:text-gray-400 dark:placeholder:text-gray-500 focus:outline-none focus:border-amber-600 transition box-border text-sm"
+            />
 
             {/* Phone Field */}
-            <div className="flex gap-3">
+            <div className="flex gap-2 w-full">
               <select
                 value={selectedCountry.code}
                 onChange={(e) => {
@@ -125,7 +121,7 @@ export function EnquiryPopup({ isOpen, onClose }: EnquiryPopupProps) {
                   if (country) setSelectedCountry(country);
                 }}
                 data-testid="select-country"
-                className="border border-gray-300 dark:border-gray-600 rounded px-3 py-3 bg-white dark:bg-slate-900 text-gray-600 dark:text-gray-400 font-medium flex-shrink-0 focus:outline-none focus:border-amber-600 transition cursor-pointer"
+                className="border border-gray-300 dark:border-gray-600 rounded px-2 py-2.5 bg-white dark:bg-slate-900 text-gray-600 dark:text-gray-400 font-medium focus:outline-none focus:border-amber-600 transition cursor-pointer box-border text-xs sm:text-sm"
               >
                 {countries.map((country) => (
                   <option key={`${country.code}-${country.name}`} value={country.code} data-country={country.name}>
@@ -140,7 +136,7 @@ export function EnquiryPopup({ isOpen, onClose }: EnquiryPopupProps) {
                 onChange={(e) => setPhone(e.target.value)}
                 required
                 data-testid="input-phone"
-                className="flex-1 border border-gray-300 dark:border-gray-600 rounded px-4 py-3 bg-white dark:bg-slate-900 text-gray-700 dark:text-gray-200 placeholder:text-gray-400 dark:placeholder:text-gray-500 focus:outline-none focus:border-amber-600 transition"
+                className="flex-1 border border-gray-300 dark:border-gray-600 rounded px-4 py-2.5 bg-white dark:bg-slate-900 text-gray-700 dark:text-gray-200 placeholder:text-gray-400 dark:placeholder:text-gray-500 focus:outline-none focus:border-amber-600 transition box-border text-sm"
               />
             </div>
           </div>
@@ -149,7 +145,7 @@ export function EnquiryPopup({ isOpen, onClose }: EnquiryPopupProps) {
           <button
             type="submit"
             disabled={isLoading}
-            className="w-full mt-6 bg-amber-600 hover:bg-amber-700 text-white font-semibold py-3 rounded transition disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full mt-5 bg-amber-600 hover:bg-amber-700 text-white font-semibold py-2.5 rounded transition disabled:opacity-50 disabled:cursor-not-allowed text-sm"
             data-testid="button-submit-popup"
           >
             {isLoading ? "SUBMITTING..." : "SUBMIT"}
