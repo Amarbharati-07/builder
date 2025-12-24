@@ -6,10 +6,27 @@ interface EnquiryPopupProps {
   onClose: () => void;
 }
 
+const countries = [
+  { code: "+91", name: "India", flag: "🇮🇳" },
+  { code: "+1", name: "USA", flag: "🇺🇸" },
+  { code: "+1", name: "Canada", flag: "🇨🇦" },
+  { code: "+44", name: "UK", flag: "🇬🇧" },
+  { code: "+61", name: "Australia", flag: "🇦🇺" },
+  { code: "+81", name: "Japan", flag: "🇯🇵" },
+  { code: "+86", name: "China", flag: "🇨🇳" },
+  { code: "+33", name: "France", flag: "🇫🇷" },
+  { code: "+49", name: "Germany", flag: "🇩🇪" },
+  { code: "+39", name: "Italy", flag: "🇮🇹" },
+  { code: "+34", name: "Spain", flag: "🇪🇸" },
+  { code: "+971", name: "UAE", flag: "🇦🇪" },
+  { code: "+65", name: "Singapore", flag: "🇸🇬" },
+];
+
 export function EnquiryPopup({ isOpen, onClose }: EnquiryPopupProps) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+  const [selectedCountry, setSelectedCountry] = useState(countries[0]); // Default to India
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
 
@@ -24,7 +41,7 @@ export function EnquiryPopup({ isOpen, onClose }: EnquiryPopupProps) {
         body: JSON.stringify({
           name,
           email,
-          phone,
+          phone: `${selectedCountry.code}${phone}`,
           message: "Enquiry from popup",
         }),
       });
@@ -101,9 +118,21 @@ export function EnquiryPopup({ isOpen, onClose }: EnquiryPopupProps) {
 
             {/* Phone Field */}
             <div className="flex gap-3">
-              <div className="w-20 border border-gray-300 dark:border-gray-600 rounded px-3 py-3 bg-white dark:bg-slate-900 flex items-center justify-center text-gray-600 dark:text-gray-400 font-medium flex-shrink-0">
-                +91
-              </div>
+              <select
+                value={selectedCountry.code}
+                onChange={(e) => {
+                  const country = countries.find(c => c.code === e.target.value && c.name === e.target.selectedOptions[0]?.dataset.country);
+                  if (country) setSelectedCountry(country);
+                }}
+                data-testid="select-country"
+                className="border border-gray-300 dark:border-gray-600 rounded px-3 py-3 bg-white dark:bg-slate-900 text-gray-600 dark:text-gray-400 font-medium flex-shrink-0 focus:outline-none focus:border-amber-600 transition cursor-pointer"
+              >
+                {countries.map((country) => (
+                  <option key={`${country.code}-${country.name}`} value={country.code} data-country={country.name}>
+                    {country.flag} {country.name} ({country.code})
+                  </option>
+                ))}
+              </select>
               <input
                 type="tel"
                 placeholder="Contact Number"
