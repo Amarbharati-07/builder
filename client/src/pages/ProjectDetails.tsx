@@ -2,7 +2,7 @@ import { useRoute } from "wouter";
 import { useProject } from "@/hooks/use-projects";
 import { LeadForm } from "@/components/LeadForm";
 import { Badge } from "@/components/ui/badge";
-import { Check, MapPin, Calendar, Home, ArrowLeft } from "lucide-react";
+import { Check, MapPin, Calendar, Home, ArrowLeft, QrCode, Building2, DollarSign, Eye, Download, Grid3x3, Image } from "lucide-react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTrigger, DialogHeader, DialogTitle } from "@/components/ui/dialog";
@@ -68,22 +68,22 @@ export default function ProjectDetails() {
                 {project.description}
               </div>
               
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-8 p-6 bg-secondary rounded-lg">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-8 p-6 bg-gradient-to-br from-amber-50 to-orange-50 rounded-lg border-2 border-amber-200">
                 <div className="flex flex-col">
-                  <span className="text-sm text-muted-foreground uppercase tracking-wide">RERA ID</span>
-                  <span className="font-medium">{project.reraId || "N/A"}</span>
+                  <span className="text-sm text-gray-600 uppercase tracking-wide font-semibold">Price per Sq.ft</span>
+                  <span className="font-bold text-lg text-amber-700">{project.pricePerSqft}</span>
                 </div>
                 <div className="flex flex-col">
-                  <span className="text-sm text-muted-foreground uppercase tracking-wide">Possession</span>
+                  <span className="text-sm text-gray-600 uppercase tracking-wide font-semibold">Possession</span>
                   <span className="font-medium">{project.possessionDate || "Ready to Move"}</span>
                 </div>
                 <div className="flex flex-col">
-                  <span className="text-sm text-muted-foreground uppercase tracking-wide">Status</span>
-                  <span className="font-medium capitalize">{project.status}</span>
+                  <span className="text-sm text-gray-600 uppercase tracking-wide font-semibold">Status</span>
+                  <span className="font-medium capitalize px-3 py-1 bg-white rounded w-fit">{project.status}</span>
                 </div>
                 <div className="flex flex-col">
-                  <span className="text-sm text-muted-foreground uppercase tracking-wide">Configuration</span>
-                  <span className="font-medium">2, 3 & 4 BHK</span>
+                  <span className="text-sm text-gray-600 uppercase tracking-wide font-semibold">Type</span>
+                  <span className="font-medium">{project.type}</span>
                 </div>
               </div>
             </section>
@@ -102,23 +102,129 @@ export default function ProjectDetails() {
               </div>
             </section>
 
-            <section>
-              <h2 className="font-serif text-3xl font-bold mb-8">Gallery</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {images.map((img, idx) => (
-                  <img 
-                    key={idx} 
-                    src={img} 
-                    alt={`Gallery ${idx + 1}`} 
-                    className="w-full h-64 object-cover rounded-lg cursor-pointer hover:opacity-95 transition-opacity"
+            {/* 3D Model Section */}
+            {project.model3D && (
+              <section>
+                <h2 className="font-serif text-3xl font-bold mb-8 flex items-center gap-3">
+                  <Eye className="w-8 h-8 text-primary" />
+                  3D Model View
+                </h2>
+                <div className="relative h-96 md:h-[500px] rounded-lg overflow-hidden bg-gray-900 flex items-center justify-center border-2 border-gray-200">
+                  <img
+                    src={project.model3D}
+                    alt="3D Model"
+                    className="w-full h-full object-cover"
                   />
+                </div>
+              </section>
+            )}
+
+            {/* Brochure Section */}
+            {project.brochure && (
+              <section>
+                <h2 className="font-serif text-3xl font-bold mb-8 flex items-center gap-3">
+                  <Download className="w-8 h-8 text-primary" />
+                  Brochure & Documents
+                </h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <a
+                    href={project.brochure}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-6 border-2 border-primary rounded-lg hover:bg-primary/5 transition text-center group cursor-pointer"
+                  >
+                    <Download className="w-12 h-12 text-primary mx-auto mb-3 group-hover:scale-110 transition" />
+                    <h3 className="font-bold mb-2">Download Brochure</h3>
+                    <p className="text-sm text-muted-foreground">
+                      Complete project brochure with specifications
+                    </p>
+                  </a>
+                  <div className="p-6 border-2 border-gray-300 rounded-lg text-center">
+                    <Image className="w-12 h-12 text-gray-400 mx-auto mb-3" />
+                    <h3 className="font-bold mb-2">High Resolution Images</h3>
+                    <p className="text-sm text-muted-foreground">
+                      Professional photography gallery
+                    </p>
+                  </div>
+                </div>
+              </section>
+            )}
+
+            {/* Floor Plans Section */}
+            {(project.floorPlans as string[]).length > 0 && (
+              <section>
+                <h2 className="font-serif text-3xl font-bold mb-8 flex items-center gap-3">
+                  <Grid3x3 className="w-8 h-8 text-primary" />
+                  Floor Plans
+                </h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {(project.floorPlans as string[]).map((plan, idx) => (
+                    <div key={idx} className="rounded-lg overflow-hidden border-2 border-gray-200 hover:border-primary transition cursor-pointer group">
+                      <img
+                        src={plan}
+                        alt={`Floor Plan ${idx + 1}`}
+                        className="w-full h-80 object-cover group-hover:scale-105 transition duration-300"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {/* Amenities Images Gallery Section */}
+            <section>
+              <h2 className="font-serif text-3xl font-bold mb-8 flex items-center gap-3">
+                <Image className="w-8 h-8 text-primary" />
+                Project Gallery
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {images.map((img, idx) => (
+                  <div key={idx} className="rounded-lg overflow-hidden h-72 cursor-pointer group">
+                    <img
+                      src={img}
+                      alt={`Gallery ${idx + 1}`}
+                      className="w-full h-full object-cover group-hover:scale-110 transition duration-300"
+                    />
+                  </div>
                 ))}
-                {/* Fallback if no images */}
                 {images.length === 0 && (
                   <div className="col-span-full h-40 bg-gray-100 flex items-center justify-center text-muted-foreground rounded-lg">
                     No gallery images available
                   </div>
                 )}
+              </div>
+            </section>
+
+            {/* RERA Section */}
+            <section className="bg-gradient-to-r from-blue-50 to-blue-100 p-8 rounded-lg border-2 border-blue-200">
+              <h2 className="font-serif text-3xl font-bold mb-6 flex items-center gap-3">
+                <QrCode className="w-8 h-8 text-blue-600" />
+                RERA Certification
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div className="space-y-4">
+                  <div>
+                    <p className="text-sm text-gray-600 uppercase tracking-wide font-semibold">
+                      RERA Registration Number
+                    </p>
+                    <p className="text-2xl font-bold text-gray-900 mt-1">{project.reraId}</p>
+                  </div>
+                  <p className="text-gray-700 text-sm">
+                    This project is registered with the Real Estate Regulatory Authority. Scan the QR code to verify the registration status on the official RERA portal.
+                  </p>
+                </div>
+                <div className="flex justify-center">
+                  <div className="bg-white p-6 rounded-lg shadow-lg border-2 border-gray-200">
+                    <img
+                      src={project.reraQRCode}
+                      alt="RERA QR Code"
+                      className="w-48 h-48 object-contain"
+                    />
+                    <p className="text-center text-xs text-gray-600 mt-4">
+                      Scan to verify on RERA portal
+                    </p>
+                  </div>
+                </div>
               </div>
             </section>
           </div>

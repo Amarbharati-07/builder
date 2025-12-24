@@ -9,14 +9,21 @@ export const projects = pgTable("projects", {
   slug: text("slug").notNull().unique(),
   status: text("status").notNull(), // 'ongoing', 'completed', 'upcoming'
   location: text("location").notNull(),
+  address: text("address").notNull(),
+  landmark: text("landmark").notNull(),
   price: text("price").notNull(),
+  pricePerSqft: text("price_per_sqft").notNull(),
   type: text("type").notNull(), // 'Residential', 'Commercial'
   description: text("description").notNull(),
   amenities: jsonb("amenities").$type<string[]>().notNull(),
   images: jsonb("images").$type<string[]>().notNull(),
   coverImage: text("cover_image").notNull(),
-  reraId: text("rera_id"),
+  reraId: text("rera_id").notNull(),
+  reraQRCode: text("rera_qr_code").notNull(),
   possessionDate: text("possession_date"),
+  model3D: text("model_3d"),
+  brochure: text("brochure"),
+  floorPlans: jsonb("floor_plans").$type<string[]>().notNull().default([]),
 });
 
 // === TESTIMONIALS ===
