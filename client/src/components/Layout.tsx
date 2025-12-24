@@ -4,11 +4,13 @@ import { Menu, X, Phone, Mail, Instagram, Facebook, Linkedin, MapPin } from "luc
 import { useState, useEffect } from "react";
 import ChatWidget from "./ChatWidget";
 import { Button } from "@/components/ui/button";
+import { EnquiryModal } from "./EnquiryModal";
 
 export function Layout({ children }: { children: React.ReactNode }) {
   const [location] = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isEnquiryOpen, setIsEnquiryOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,6 +18,15 @@ export function Layout({ children }: { children: React.ReactNode }) {
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Show enquiry modal every 1.5 minutes (90 seconds)
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIsEnquiryOpen(true);
+    }, 90000); // 90000ms = 1.5 minutes
+
+    return () => clearInterval(interval);
   }, []);
 
   const navLinks = [
@@ -187,6 +198,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
       {/* Chat Widget */}
       <ChatWidget />
+
+      {/* Enquiry Modal */}
+      <EnquiryModal isOpen={isEnquiryOpen} onClose={() => setIsEnquiryOpen(false)} />
     </div>
   );
 }
