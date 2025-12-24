@@ -1,8 +1,7 @@
 import { useState } from "react";
-import { Dialog, DialogContent, DialogHeader } from "@/components/ui/dialog";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { X } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 interface EnquiryModalProps {
@@ -53,18 +52,21 @@ export function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-md bg-white dark:bg-slate-950 border-0">
-        <DialogHeader className="relative text-center pb-6">
-          <h2 className="text-2xl font-serif text-gray-400 dark:text-gray-300">
+        <div className="relative text-center pb-6">
+          <h2 className="text-2xl font-serif text-gray-400 dark:text-gray-300 pr-16">
             PLEASE ENTER YOUR DETAILS BELOW
           </h2>
           <button
             onClick={onClose}
-            className="absolute right-0 top-0 text-amber-600 hover:text-amber-700 transition"
+            className="absolute right-0 top-0 w-12 h-12 border-2 border-amber-600 rounded flex items-center justify-center hover:bg-amber-50 dark:hover:bg-amber-950 transition"
             data-testid="button-close-enquiry"
           >
-            <X className="w-8 h-8" />
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-amber-600">
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
           </button>
-        </DialogHeader>
+        </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <Input
