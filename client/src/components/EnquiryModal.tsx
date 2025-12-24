@@ -103,19 +103,6 @@ export function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
             />
           </div>
 
-          <div className="flex items-start gap-3 py-2">
-            <input
-              type="checkbox"
-              id="consent"
-              defaultChecked
-              className="mt-1"
-              data-testid="checkbox-consent"
-            />
-            <label htmlFor="consent" className="text-sm text-gray-400 dark:text-gray-500 leading-relaxed">
-              By opting in, you consent to receive service updates, offers, and alerts via RCS, SMS, and email.
-            </label>
-          </div>
-
           <Button
             type="submit"
             disabled={isLoading}
