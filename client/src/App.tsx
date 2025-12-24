@@ -5,14 +5,29 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/not-found";
 
+import { Layout } from "@/components/Layout";
+import Home from "@/pages/Home";
+import Projects from "@/pages/Projects";
+import ProjectDetails from "@/pages/ProjectDetails";
+import Experience from "@/pages/Experience";
+import News from "@/pages/News";
+import Careers from "@/pages/Careers";
+import Contact from "@/pages/Contact";
+
 function Router() {
   return (
-    <Switch>
-      {/* Add pages below */}
-      {/* <Route path="/" component={Home}/> */}
-      {/* Fallback to 404 */}
-      <Route component={NotFound} />
-    </Switch>
+    <Layout>
+      <Switch>
+        <Route path="/" component={Home} />
+        <Route path="/projects" component={Projects} />
+        <Route path="/projects/:slug" component={ProjectDetails} />
+        <Route path="/experience" component={Experience} />
+        <Route path="/news" component={News} />
+        <Route path="/careers" component={Careers} />
+        <Route path="/contact" component={Contact} />
+        <Route component={NotFound} />
+      </Switch>
+    </Layout>
   );
 }
 
