@@ -5,6 +5,7 @@ import { useProjects } from "@/hooks/use-projects";
 import { useTestimonials } from "@/hooks/use-content";
 import { ProjectCard } from "@/components/ProjectCard";
 import { Button } from "@/components/ui/button";
+import { KeyBenefitsSection } from "@/components/ProjectSections";
 
 export default function Home() {
   const { data: projects, isLoading: loadingProjects } = useProjects();
@@ -207,6 +208,17 @@ export default function Home() {
               ))}
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Key Benefits Preview */}
+      <section className="py-24 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="font-serif text-4xl font-bold mb-4">Why Choose Luxe Estates?</h2>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">Experience unparalleled luxury with our premium offerings</p>
+          </div>
+          <KeyBenefitsSection />
         </div>
       </section>
 
