@@ -5,7 +5,7 @@ import { useProjects } from "@/hooks/use-projects";
 import { useTestimonials } from "@/hooks/use-content";
 import { ProjectCard } from "@/components/ProjectCard";
 import { Button } from "@/components/ui/button";
-import { KeyBenefitsSection } from "@/components/ProjectSections";
+import { KeyBenefitsSection, TeamSection, TrustCertificatesSection } from "@/components/ProjectSections";
 
 export default function Home() {
   const { data: projects, isLoading: loadingProjects } = useProjects();
@@ -219,6 +219,14 @@ export default function Home() {
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">Experience unparalleled luxury with our premium offerings</p>
           </div>
           <KeyBenefitsSection />
+        </div>
+      </section>
+
+      {/* Professional Additions */}
+      <section className="py-24 bg-white">
+        <div className="container mx-auto px-4">
+          <TrustCertificatesSection />
+          <TeamSection />
         </div>
       </section>
 

@@ -1,8 +1,62 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, Zap, Wifi, Dumbbell, Shield, Droplet, Building, Trees, MapPin, FileText, Download, Map, Phone, Mail, Lock, RotateCw, Award, Leaf } from "lucide-react";
+import { ChevronDown, Zap, Wifi, Dumbbell, Shield, Droplet, Building, Trees, MapPin, FileText, Download, Map, Phone, Mail, Lock, RotateCw, Award, Leaf, Users, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+
+export function TeamSection() {
+  const team = [
+    { name: "John Doe", role: "Chief Architect", image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=200&auto=format&fit=crop" },
+    { name: "Jane Smith", role: "Lead Designer", image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=200&auto=format&fit=crop" },
+    { name: "Robert Wilson", role: "Project Manager", image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=200&auto=format&fit=crop" },
+  ];
+
+  return (
+    <section className="mb-16">
+      <h2 className="font-serif text-3xl font-bold mb-8 text-center">Our Leadership Team</h2>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {team.map((member, idx) => (
+          <motion.div 
+            key={idx}
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="text-center group"
+          >
+            <div className="w-32 h-32 mx-auto rounded-full overflow-hidden mb-4 border-4 border-primary/20 group-hover:border-primary transition duration-300">
+              <img src={member.image} alt={member.name} className="w-full h-full object-cover" />
+            </div>
+            <h3 className="font-bold text-lg">{member.name}</h3>
+            <p className="text-muted-foreground text-sm">{member.role}</p>
+          </motion.div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+export function TrustCertificatesSection() {
+  const certs = [
+    { title: "ISO 9001:2015", subtitle: "Quality Management" },
+    { title: "IGBC Gold", subtitle: "Green Building" },
+    { title: "National Award", subtitle: "Excellence 2024" },
+  ];
+
+  return (
+    <section className="mb-16 py-12 bg-gray-50 rounded-2xl">
+      <h2 className="font-serif text-3xl font-bold mb-8 text-center">Trust & Excellence</h2>
+      <div className="flex flex-wrap justify-center gap-12">
+        {certs.map((cert, idx) => (
+          <div key={idx} className="text-center">
+            <Award className="w-16 h-16 text-primary mx-auto mb-4 opacity-80" />
+            <h3 className="font-bold text-lg">{cert.title}</h3>
+            <p className="text-muted-foreground text-xs uppercase tracking-widest">{cert.subtitle}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
 
 const amenityIcons: { [key: string]: typeof MapPin } = {
   "Clubhouse": Building,

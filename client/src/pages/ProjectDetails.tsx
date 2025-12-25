@@ -15,7 +15,8 @@ import {
   LocationSection,
   ConstructionUpdatesSection,
   RERAComplianceSection,
-  RelatedProjectsSection
+  RelatedProjectsSection,
+  TrustCertificatesSection
 } from "@/components/ProjectSections";
 
 export default function ProjectDetails() {
@@ -80,6 +81,10 @@ export default function ProjectDetails() {
             <ResourcesSection project={project} />
             <LocationSection project={project} />
             <ConstructionUpdatesSection />
+            <section className="mb-16">
+               <h2 className="font-serif text-3xl font-bold mb-8">Certifications</h2>
+               <TrustCertificatesSection />
+            </section>
             <RERAComplianceSection project={project} />
 
             {/* 3D Model Section */}
