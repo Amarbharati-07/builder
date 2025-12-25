@@ -25,6 +25,7 @@ export const projects = pgTable("projects", {
   brochure: text("brochure"),
   floorPlans: jsonb("floor_plans").$type<string[]>().notNull().default([]),
   certificates: jsonb("certificates").$type<string[]>().notNull().default([]),
+  videos: jsonb("videos").$type<string[]>().notNull().default([]),
 });
 
 // === TESTIMONIALS ===

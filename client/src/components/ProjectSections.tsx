@@ -1,8 +1,41 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, Zap, Wifi, Dumbbell, Shield, Droplet, Building, Trees, MapPin, FileText, Download, Map, Phone, Mail, Lock, RotateCw, Award, Leaf, Users, Star } from "lucide-react";
+import { ChevronDown, Zap, Wifi, Dumbbell, Shield, Droplet, Building, Trees, MapPin, FileText, Download, Map, Phone, Mail, Lock, RotateCw, Award, Leaf, Users, Star, Play, Video } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+
+export function VideoGallerySection({ videos }: { videos: string[] }) {
+  if (!videos || videos.length === 0) return null;
+
+  return (
+    <section className="mb-16">
+      <h2 className="font-serif text-3xl font-bold mb-8 flex items-center gap-3">
+        <Video className="w-8 h-8 text-primary" />
+        Experience the Space
+      </h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {videos.map((video, idx) => (
+          <div key={idx} className="relative group rounded-xl overflow-hidden shadow-2xl bg-black aspect-video border-2 border-border/50">
+            <video 
+              src={video} 
+              className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition duration-500"
+              controls
+              poster="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800&auto=format&fit=crop"
+            />
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:scale-110 transition duration-500">
+               <div className="w-16 h-16 bg-primary/90 rounded-full flex items-center justify-center shadow-2xl">
+                 <Play className="w-8 h-8 text-white fill-current ml-1" />
+               </div>
+            </div>
+            <div className="absolute bottom-4 left-4 right-4 p-4 bg-gradient-to-t from-black/80 to-transparent text-white">
+               <p className="font-bold text-lg">Project Walkthrough - {idx + 1}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
 
 export function TeamSection() {
   const team = [

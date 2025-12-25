@@ -16,7 +16,8 @@ import {
   ConstructionUpdatesSection,
   RERAComplianceSection,
   RelatedProjectsSection,
-  TrustCertificatesSection
+  TrustCertificatesSection,
+  VideoGallerySection
 } from "@/components/ProjectSections";
 
 export default function ProjectDetails() {
@@ -40,6 +41,7 @@ export default function ProjectDetails() {
   // Amenities are stored as strings in JSONB
   const amenities = project.amenities as string[];
   const images = project.images as string[];
+  const videos = project.videos as string[] || [];
 
   return (
     <div className="min-h-screen bg-white">
@@ -79,6 +81,7 @@ export default function ProjectDetails() {
             <KeyBenefitsSection />
             <AmenitiesWithIconsSection amenities={amenities} />
             <ResourcesSection project={project} />
+            <VideoGallerySection videos={videos.length > 0 ? videos : ["https://assets.mixkit.co/videos/preview/mixkit-modern-architecture-building-in-the-city-1188-large.mp4"]} />
             <LocationSection project={project} />
             <ConstructionUpdatesSection />
             <section className="mb-16">

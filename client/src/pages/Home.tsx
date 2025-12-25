@@ -18,13 +18,18 @@ export default function Home() {
     <div className="flex flex-col">
       {/* Hero Section */}
       <section className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
-        {/* Hero Background - Architecture Skyscraper */}
+        {/* Hero Background - Architecture Skyscraper Video/Image */}
         <div className="absolute inset-0 z-0">
-          <img 
-            src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop" 
-            alt="Luxury Architecture" 
+          <video 
+            autoPlay 
+            muted 
+            loop 
+            playsInline
             className="w-full h-full object-cover"
-          />
+            poster="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop"
+          >
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-modern-architecture-building-in-the-city-1188-large.mp4" type="video/mp4" />
+          </video>
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/80" />
         </div>
 
@@ -148,6 +153,35 @@ export default function Home() {
                 View All Projects
               </Button>
             </Link>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl bg-black aspect-video group cursor-pointer border-4 border-primary/20">
+               <video 
+                autoPlay 
+                muted 
+                loop 
+                className="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition duration-700"
+              >
+                <source src="https://assets.mixkit.co/videos/preview/mixkit-architectural-shot-of-a-modern-building-exterior-42861-large.mp4" type="video/mp4" />
+              </video>
+              <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition duration-700" />
+              <div className="absolute bottom-8 left-8 text-white">
+                <Badge className="bg-primary mb-4 text-xs uppercase tracking-widest">Showcase Video</Badge>
+                <h3 className="text-3xl font-serif font-bold">Our Building Legacy</h3>
+                <p className="text-white/80 max-w-md mt-2">Explore how we redefine modern living through architectural innovation and sustainable practices.</p>
+              </div>
+            </div>
+            <div className="flex flex-col justify-center space-y-8">
+              <div className="p-6 bg-white border-l-4 border-primary shadow-sm hover:shadow-md transition">
+                <h4 className="font-bold text-xl mb-2">Sustainable Design</h4>
+                <p className="text-muted-foreground italic">"We incorporate green building practices into every square foot of our developments, ensuring a better future."</p>
+              </div>
+              <div className="p-6 bg-white border-l-4 border-primary shadow-sm hover:shadow-md transition">
+                <h4 className="font-bold text-xl mb-2">Premium Materials</h4>
+                <p className="text-muted-foreground italic">"From Italian marble to smart-home automation, we only source the finest materials for your comfort."</p>
+              </div>
+            </div>
           </div>
 
           {loadingProjects ? (
