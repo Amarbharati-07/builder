@@ -19,6 +19,7 @@ import {
   TrustCertificatesSection,
   VideoGallerySection
 } from "@/components/ProjectSections";
+import "./ProjectDetails.css";
 
 export default function ProjectDetails() {
   const [, params] = useRoute("/projects/:slug");
@@ -46,13 +47,13 @@ export default function ProjectDetails() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero */}
-      <div className="relative h-[70vh] w-full bg-black">
+      <div className="project-hero">
         <img 
           src={project.coverImage} 
           alt={project.title} 
           className="w-full h-full object-cover opacity-70"
         />
-        <div className="absolute bottom-0 left-0 w-full p-8 md:p-16 bg-gradient-to-t from-black via-black/50 to-transparent text-white">
+        <div className="hero-gradient">
           <div className="container mx-auto">
             <Link href="/projects">
               <Button className="text-white/80 p-0 mb-4 hover:text-white bg-transparent hover:bg-transparent">
@@ -158,8 +159,8 @@ export default function ProjectDetails() {
 
           {/* Sidebar */}
           <div className="lg:col-span-1">
-            <div className="sticky top-24">
-              <div className="bg-white border border-border shadow-xl rounded-xl p-8">
+            <div className="sticky-sidebar">
+              <div className="card-container">
                 <h3 className="font-serif text-2xl font-bold mb-2">Interested?</h3>
                 <p className="text-muted-foreground mb-6">Fill out the form below to book a site visit or get a brochure.</p>
                 <LeadForm projectId={project.id} />
@@ -177,7 +178,7 @@ export default function ProjectDetails() {
       </div>
       
       {/* Sticky Mobile CTA */}
-      <div className="fixed bottom-0 left-0 w-full p-4 bg-white border-t border-border lg:hidden z-40 flex gap-3 shadow-lg">
+      <div className="mobile-cta">
         <a href="tel:+15551234567" className="flex-1">
           <Button variant="outline" className="w-full h-12">Call Now</Button>
         </a>

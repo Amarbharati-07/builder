@@ -1,0 +1,19 @@
+.project-hero {
+  @apply relative h-[70vh] w-full bg-black;
+}
+
+.hero-gradient {
+  @apply absolute bottom-0 left-0 w-full p-8 md:p-16 bg-gradient-to-t from-black via-black/50 to-transparent text-white;
+}
+
+.sticky-sidebar {
+  @apply sticky top-24;
+}
+
+.card-container {
+  @apply bg-white border border-border shadow-xl rounded-xl p-8;
+}
+
+.mobile-cta {
+  @apply fixed bottom-0 left-0 w-full p-4 bg-white border-t border-border lg:hidden z-40 flex gap-3 shadow-lg;
+}

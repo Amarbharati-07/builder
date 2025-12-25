@@ -1,0 +1,19 @@
+.nav-header {
+  @apply fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-white/10;
+}
+
+.nav-header-scrolled {
+  @apply bg-background/95 backdrop-blur-md shadow-sm py-3 border-border/50;
+}
+
+.nav-header-transparent {
+  @apply bg-transparent py-6 text-white;
+}
+
+.footer-container {
+  @apply bg-[#111] text-white py-16 border-t border-white/10;
+}
+
+.nav-link {
+  @apply text-sm font-medium tracking-wide hover:text-primary transition-colors cursor-pointer uppercase;
+}

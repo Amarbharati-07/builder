@@ -6,6 +6,7 @@ import ChatWidget from "./ChatWidget";
 import { Button } from "@/components/ui/button";
 import { EnquiryModal } from "./EnquiryModal";
 import { EnquiryPopup } from "./EnquiryPopup";
+import "./Layout.css";
 
 export function Layout({ children }: { children: React.ReactNode }) {
   const [location] = useLocation();
@@ -36,10 +37,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
       {/* Navigation */}
       <header
         className={cn(
-          "fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-white/10",
+          "nav-header",
           isScrolled || location !== "/" 
-            ? "bg-background/95 backdrop-blur-md shadow-sm py-3 border-border/50" 
-            : "bg-transparent py-6 text-white"
+            ? "nav-header-scrolled" 
+            : "nav-header-transparent"
         )}
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
@@ -59,7 +60,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
             {navLinks.map((link) => (
               <Link key={link.href} href={link.href}>
                 <span className={cn(
-                  "text-sm font-medium tracking-wide hover:text-primary transition-colors cursor-pointer uppercase",
+                  "nav-link",
                   location === link.href && "text-primary",
                   !isScrolled && location === "/" && location !== link.href && "text-white/90 hover:text-white"
                 )}>
@@ -116,7 +117,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </main>
 
       {/* Footer */}
-      <footer className="bg-[#111] text-white py-16 border-t border-white/10">
+      <footer className="footer-container">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
             <div>

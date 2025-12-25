@@ -7,6 +7,7 @@ import { ProjectCard } from "@/components/ProjectCard";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { KeyBenefitsSection, TeamSection, TrustCertificatesSection } from "@/components/ProjectSections";
+import "./Home.css";
 
 export default function Home() {
   const { data: projects, isLoading: loadingProjects } = useProjects();
@@ -18,7 +19,7 @@ export default function Home() {
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
+      <section className="hero-section">
         {/* Hero Background - Architecture Skyscraper Video/Image */}
         <div className="absolute inset-0 z-0">
           <video 
@@ -31,7 +32,7 @@ export default function Home() {
           >
             <source src="https://assets.mixkit.co/videos/preview/mixkit-modern-architecture-building-in-the-city-1188-large.mp4" type="video/mp4" />
           </video>
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/80" />
+          <div className="hero-overlay" />
         </div>
 
         <div className="container relative z-10 px-4 text-center text-white">
@@ -142,7 +143,7 @@ export default function Home() {
       </section>
 
       {/* Featured Projects */}
-      <section className="py-24 bg-secondary">
+      <section className="section-padding bg-secondary">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-end mb-12">
             <div>
@@ -157,7 +158,7 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl bg-black aspect-video group cursor-pointer border-4 border-primary/20">
+            <div className="featured-video-container">
                <video 
                 autoPlay 
                 muted 
