@@ -5,6 +5,7 @@ import { useProjects } from "@/hooks/use-projects";
 import { useTestimonials } from "@/hooks/use-content";
 import { ProjectCard } from "@/components/ProjectCard";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { KeyBenefitsSection, TeamSection, TrustCertificatesSection } from "@/components/ProjectSections";
 
 export default function Home() {
@@ -130,7 +131,7 @@ export default function Home() {
                 </div>
 
                 <Link href="/experience">
-                  <Button variant="link" className="text-primary p-0 h-auto font-semibold text-lg hover:text-primary/80">
+                  <Button variant="ghost" className="text-primary p-0 h-auto font-semibold text-lg hover:text-primary/80">
                     Read our story <ArrowRight className="ml-2 w-5 h-5" />
                   </Button>
                 </Link>
