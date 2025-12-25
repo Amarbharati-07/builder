@@ -18,5 +18,5 @@
 }
 
 .featured-video-container {
-  @apply relative rounded-2xl overflow-hidden shadow-2xl bg-black aspect-video group cursor-pointer border-4 border-primary/20;
+  @apply relative rounded-2xl overflow-hidden shadow-2xl bg-black aspect-video cursor-pointer border-4 border-primary/20;
 }

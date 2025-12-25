@@ -158,7 +158,7 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
-            <div className="featured-video-container">
+            <div className="featured-video-container group">
                <video 
                 autoPlay 
                 muted 
