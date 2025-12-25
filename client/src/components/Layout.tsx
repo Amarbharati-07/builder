@@ -22,15 +22,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Show enquiry popup every 20 seconds
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setIsPopupOpen(true);
-    }, 20000); // 20000ms = 20 seconds
-
-    return () => clearInterval(interval);
-  }, []);
-
   const navLinks = [
     { href: "/", label: "Home" },
     { href: "/projects", label: "Projects" },
