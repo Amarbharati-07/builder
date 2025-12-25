@@ -79,7 +79,16 @@ export class MemStorage implements IStorage {
 
   async createProject(project: InsertProject): Promise<Project> {
     const id = this.currentId++;
-    const newProject: Project = { ...project, id };
+    const newProject: Project = { 
+      ...project, 
+      id,
+      possessionDate: project.possessionDate ?? null,
+      model3D: project.model3D ?? null,
+      brochure: project.brochure ?? null,
+      floorPlans: project.floorPlans ?? [],
+      certificates: project.certificates ?? [],
+      videos: project.videos ?? []
+    };
     this.projects.set(id, newProject);
     return newProject;
   }
@@ -90,7 +99,12 @@ export class MemStorage implements IStorage {
 
   async createTestimonial(testimonial: InsertTestimonial): Promise<Testimonial> {
     const id = this.currentId++;
-    const newTestimonial: Testimonial = { ...testimonial, id };
+    const newTestimonial: Testimonial = { 
+      ...testimonial, 
+      id,
+      avatar: testimonial.avatar ?? null,
+      videoUrl: testimonial.videoUrl ?? null
+    };
     this.testimonials.set(id, newTestimonial);
     return newTestimonial;
   }
@@ -119,7 +133,13 @@ export class MemStorage implements IStorage {
 
   async createLead(lead: InsertLead): Promise<Lead> {
     const id = this.currentId++;
-    const newLead: Lead = { ...lead, id, createdAt: new Date() };
+    const newLead: Lead = { 
+      ...lead, 
+      id, 
+      createdAt: new Date(),
+      message: lead.message ?? null,
+      projectId: lead.projectId ?? null
+    };
     this.leads.set(id, newLead);
     return newLead;
   }
