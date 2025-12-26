@@ -1,17 +1,22 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "wouter";
 import { ArrowRight, Clock, Award, Building } from "lucide-react";
 import { useProjects } from "@/hooks/use-projects";
 import { ProjectCard } from "@/components/ProjectCard";
+import { ProjectFilter } from "@/components/ProjectFilter";
 import { Button } from "@/components/ui/button";
 import heroVideo from "@assets/generated_videos/cinematic_architectural_background_video_for_hero_section.mp4";
 import "./Home.css";
 
 export default function Home() {
   const { data: projects, isLoading: loadingProjects } = useProjects();
+  const [selectedType, setSelectedType] = useState<"All" | "Residential" | "Commercial">("All");
 
-  // Featured projects are just the first 3 for this example
-  const featuredProjects = projects?.slice(0, 3);
+  // Filter projects based on selected type
+  const filteredProjects = projects?.filter(
+    p => selectedType === "All" || p.type === selectedType
+  ) || [];
 
   return (
     <div className="flex flex-col">
@@ -153,15 +158,18 @@ export default function Home() {
             </Link>
           </div>
 
+          {/* Filter Section */}
+          <ProjectFilter selectedType={selectedType} onFilterChange={setSelectedType} />
+
           {loadingProjects ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {[1, 2, 3].map(i => (
                 <div key={i} className="h-[500px] bg-gray-200 animate-pulse rounded-lg" />
               ))}
             </div>
-          ) : (
+          ) : filteredProjects.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-              {featuredProjects?.map((project, index) => (
+              {filteredProjects.map((project, index) => (
                 <motion.div
                   key={project.id}
                   initial={{ opacity: 0, y: 20 }}
@@ -172,6 +180,12 @@ export default function Home() {
                   <ProjectCard project={project} />
                 </motion.div>
               ))}
+            </div>
+          ) : (
+            <div className="text-center py-12">
+              <p className="text-muted-foreground text-lg" data-testid="text-no-projects">
+                No projects found for the selected category
+              </p>
             </div>
           )}
           

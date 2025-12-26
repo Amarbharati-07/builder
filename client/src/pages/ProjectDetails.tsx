@@ -1,199 +1,186 @@
 import { useRoute } from "wouter";
-import { useProject } from "@/hooks/use-projects";
 import { useProjects } from "@/hooks/use-projects";
-import { LeadForm } from "@/components/LeadForm";
-import { Badge } from "@/components/ui/badge";
-import { Check, MapPin, Calendar, Home, ArrowLeft, QrCode, Building2, DollarSign, Eye, Download, Grid3x3, Image } from "lucide-react";
-import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogTrigger, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { 
-  PremiumOverviewSection, 
-  KeyBenefitsSection, 
-  AmenitiesWithIconsSection,
-  ResourcesSection,
-  LocationSection,
-  ConstructionUpdatesSection,
-  RERAComplianceSection,
-  RelatedProjectsSection,
-  TrustCertificatesSection,
-  VideoGallerySection
-} from "@/components/ProjectSections";
-import "./ProjectDetails.css";
+import { Badge } from "@/components/ui/badge";
+import { ProjectGallery } from "@/components/ProjectGallery";
+import { AmenitiesGrid } from "@/components/AmenitiesGrid";
+import { ConnectivitySection } from "@/components/ConnectivitySection";
+import { ArrowLeft, MapPin, Home, CheckCircle } from "lucide-react";
+import { Link } from "wouter";
 
-export default function ProjectDetails() {
-  const [, params] = useRoute("/projects/:slug");
-  const { data: project, isLoading, error } = useProject(params?.slug || "");
-  const { data: allProjects } = useProjects();
+export default function ProjectDetail() {
+  const [match, params] = useRoute("/project/:slug");
+  const { data: projects } = useProjects();
+  const project = projects?.find(p => p.slug === params?.slug);
 
-  if (isLoading) {
-    return <div className="min-h-screen flex items-center justify-center"><div className="w-10 h-10 border-4 border-primary border-t-transparent rounded-full animate-spin" /></div>;
-  }
-
-  if (error || !project) {
+  if (!project) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center p-4">
-        <h2 className="text-2xl font-bold mb-4">Project Not Found</h2>
-        <Link href="/projects"><Button>Back to Projects</Button></Link>
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-4xl font-bold mb-4">Project Not Found</h1>
+          <Link href="/">
+            <Button>Go Home</Button>
+          </Link>
+        </div>
       </div>
     );
   }
 
-  // Amenities are stored as strings in JSONB
-  const amenities = project.amenities as string[];
-  const images = project.images as string[];
-  const videos = project.videos as string[] || [];
+  const statusColors: Record<string, string> = {
+    "ongoing": "bg-yellow-500",
+    "completed": "bg-green-500",
+    "upcoming": "bg-blue-500",
+  };
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* Hero */}
-      <div className="project-hero">
-        <img 
-          src={project.coverImage} 
-          alt={project.title} 
-          className="w-full h-full object-cover opacity-70"
-        />
-        <div className="hero-gradient">
-          <div className="container mx-auto">
-            <Link href="/projects">
-              <Button className="text-white/80 p-0 mb-4 hover:text-white bg-transparent hover:bg-transparent">
-                <ArrowLeft className="mr-2 h-4 w-4" /> Back to Projects
-              </Button>
-            </Link>
-            <div className="flex items-center gap-3 mb-4">
-              <Badge className="bg-primary text-white border-none">{project.status}</Badge>
-              <Badge variant="outline" className="text-white border-white/30">{project.type}</Badge>
-            </div>
-            <h1 className="font-serif text-4xl md:text-6xl font-bold mb-4">{project.title}</h1>
-            <div className="flex flex-col md:flex-row gap-6 md:items-center text-lg">
-              <div className="flex items-center"><MapPin className="mr-2 text-primary h-5 w-5" /> {project.location}</div>
-              <div className="hidden md:block w-px h-6 bg-white/30" />
-              <div className="flex items-center text-primary font-semibold">{project.price}</div>
-            </div>
-          </div>
+    <div className="flex flex-col">
+      {/* Header with back button */}
+      <div className="bg-white border-b">
+        <div className="container mx-auto px-4 py-6">
+          <Link href="/">
+            <Button variant="ghost" className="flex items-center gap-2 mb-4">
+              <ArrowLeft className="w-4 h-4" />
+              Back
+            </Button>
+          </Link>
         </div>
       </div>
 
-      <div className="container mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-          {/* Main Content */}
-          <div className="lg:col-span-2 space-y-12">
-            <PremiumOverviewSection project={project} />
-            <KeyBenefitsSection />
-            <AmenitiesWithIconsSection amenities={amenities} />
-            <ResourcesSection project={project} />
-            <VideoGallerySection videos={videos.length > 0 ? videos : ["https://assets.mixkit.co/videos/preview/mixkit-modern-architecture-building-in-the-city-1188-large.mp4"]} />
-            <LocationSection project={project} />
-            <ConstructionUpdatesSection />
-            <section className="mb-16">
-               <h2 className="font-serif text-3xl font-bold mb-8">Certifications</h2>
-               <TrustCertificatesSection />
-            </section>
-            <RERAComplianceSection project={project} />
+      {/* Hero Section with Gallery */}
+      <section className="bg-white py-8 md:py-12">
+        <div className="container mx-auto px-4">
+          <ProjectGallery
+            images={project.images}
+            videos={project.videos}
+            projectTitle={project.title}
+          />
+        </div>
+      </section>
 
-            {/* 3D Model Section */}
-            {project.model3D && (
-              <section>
-                <h2 className="font-serif text-3xl font-bold mb-8 flex items-center gap-3">
-                  <Eye className="w-8 h-8 text-primary" />
-                  3D Model View
-                </h2>
-                <div className="relative h-96 md:h-[500px] rounded-lg overflow-hidden bg-gray-900 flex items-center justify-center border-2 border-gray-200">
-                  <img
-                    src={project.model3D}
-                    alt="3D Model"
-                    className="w-full h-full object-cover"
-                  />
+      {/* Project Overview */}
+      <section className="bg-white py-12">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {/* Main Info */}
+            <div className="lg:col-span-2">
+              <div className="flex flex-col gap-4 mb-8">
+                <div className="flex items-start gap-4 flex-wrap">
+                  <Badge className={`${statusColors[project.status.toLowerCase()]} text-white text-xs uppercase`} data-testid={`badge-status-${project.status}`}>
+                    {project.status}
+                  </Badge>
+                  <Badge variant="outline" data-testid={`badge-type-${project.type}`}>
+                    {project.type}
+                  </Badge>
                 </div>
-              </section>
-            )}
-
-            {/* Floor Plans Section */}
-            {(project.floorPlans as string[]).length > 0 && (
-              <section>
-                <h2 className="font-serif text-3xl font-bold mb-8 flex items-center gap-3">
-                  <Grid3x3 className="w-8 h-8 text-primary" />
-                  Floor Plans
-                </h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {(project.floorPlans as string[]).map((plan, idx) => (
-                    <div key={idx} className="rounded-lg overflow-hidden border-2 border-gray-200 hover:border-primary transition cursor-pointer group">
-                      <img
-                        src={plan}
-                        alt={`Floor Plan ${idx + 1}`}
-                        className="w-full h-80 object-cover group-hover:scale-105 transition duration-300"
-                      />
-                    </div>
-                  ))}
-                </div>
-              </section>
-            )}
-
-            {/* Gallery Section */}
-            <section>
-              <h2 className="font-serif text-3xl font-bold mb-8 flex items-center gap-3">
-                <Image className="w-8 h-8 text-primary" />
-                Project Gallery
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {images.map((img, idx) => (
-                  <div key={idx} className="rounded-lg overflow-hidden h-72 cursor-pointer group">
-                    <img
-                      src={img}
-                      alt={`Gallery ${idx + 1}`}
-                      className="w-full h-full object-cover group-hover:scale-110 transition duration-300"
-                    />
-                  </div>
-                ))}
-                {images.length === 0 && (
-                  <div className="col-span-full h-40 bg-gray-100 flex items-center justify-center text-muted-foreground rounded-lg">
-                    No gallery images available
-                  </div>
-                )}
+                <h1 className="font-serif text-5xl font-bold text-foreground" data-testid="text-project-title">
+                  {project.title}
+                </h1>
               </div>
-            </section>
 
-            {/* Related Projects */}
-            <RelatedProjectsSection allProjects={allProjects || []} currentProjectId={project.id} />
-          </div>
+              <div className="prose prose-sm max-w-none mb-12">
+                <p className="text-lg text-muted-foreground leading-relaxed" data-testid="text-project-description">
+                  {project.description}
+                </p>
+              </div>
 
-          {/* Sidebar */}
-          <div className="lg:col-span-1">
-            <div className="sticky-sidebar">
-              <div className="card-container">
-                <h3 className="font-serif text-2xl font-bold mb-2">Interested?</h3>
-                <p className="text-muted-foreground mb-6">Fill out the form below to book a site visit or get a brochure.</p>
-                <LeadForm projectId={project.id} />
-                
-                <div className="mt-8 pt-6 border-t border-border">
-                  <p className="text-sm text-center text-muted-foreground mb-4">Or call us directly</p>
-                  <a href="tel:+15551234567" className="block w-full py-3 text-center border-2 border-primary text-primary font-bold hover:bg-primary hover:text-white transition-colors rounded-md">
-                    +1 (555) 123-4567
-                  </a>
+              {/* Key Details Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12 pb-12 border-b">
+                <div>
+                  <h3 className="font-semibold text-foreground mb-2 text-sm uppercase tracking-widest" data-testid="text-builder">
+                    Builder / Developer
+                  </h3>
+                  <p className="text-lg text-foreground">{project.builderName}</p>
                 </div>
+                <div>
+                  <h3 className="font-semibold text-foreground mb-2 text-sm uppercase tracking-widest">RERA ID</h3>
+                  <p className="text-lg text-foreground flex items-center gap-2" data-testid="text-rera-id">
+                    {project.reraId}
+                    <CheckCircle className="w-4 h-4 text-green-500" />
+                  </p>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-foreground mb-2 text-sm uppercase tracking-widest">Possession Date</h3>
+                  <p className="text-lg text-foreground" data-testid="text-possession-date">
+                    {project.possessionDate || "N/A"}
+                  </p>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-foreground mb-2 text-sm uppercase tracking-widest">Address</h3>
+                  <p className="text-lg text-foreground flex items-start gap-2" data-testid="text-address">
+                    <MapPin className="w-4 h-4 mt-1 flex-shrink-0 text-primary" />
+                    {project.address}
+                  </p>
+                </div>
+              </div>
+
+              {/* Pricing Section */}
+              <div className="mb-12">
+                <h2 className="font-serif text-3xl font-bold mb-6 text-foreground">Pricing</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div className="bg-gray-50 p-6 rounded-lg">
+                    <h3 className="font-semibold text-muted-foreground text-sm uppercase mb-2">Price Per Sq. Ft.</h3>
+                    <p className="font-serif text-3xl font-bold text-foreground" data-testid="text-price-per-sqft">
+                      {project.pricePerSqft}
+                    </p>
+                  </div>
+                  <div className="bg-gray-50 p-6 rounded-lg">
+                    <h3 className="font-semibold text-muted-foreground text-sm uppercase mb-2">Starting Price</h3>
+                    <p className="font-serif text-3xl font-bold text-foreground" data-testid="text-price">
+                      {project.price}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Sidebar CTA */}
+            <div className="lg:col-span-1">
+              <div className="bg-primary text-white p-8 rounded-lg sticky top-24">
+                <h3 className="text-2xl font-bold mb-4">Interested in this property?</h3>
+                <p className="text-white/90 mb-6">Connect with our property specialists to learn more.</p>
+                <Link href="/contact">
+                  <Button size="lg" className="w-full bg-white text-primary hover:bg-gray-100">
+                    Enquire Now
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      
-      {/* Sticky Mobile CTA */}
-      <div className="mobile-cta">
-        <a href="tel:+15551234567" className="flex-1">
-          <Button variant="outline" className="w-full h-12">Call Now</Button>
-        </a>
-        <Dialog>
-          <DialogTrigger asChild>
-             <Button className="flex-1 h-12 bg-primary text-white">Enquire</Button>
-          </DialogTrigger>
-          <DialogContent className="sm:max-w-[425px]">
-            <DialogHeader>
-              <DialogTitle>Enquire about {project.title}</DialogTitle>
-            </DialogHeader>
-            <LeadForm projectId={project.id} />
-          </DialogContent>
-        </Dialog>
-      </div>
+      </section>
+
+      {/* Amenities Section */}
+      <section className="bg-gray-50 py-16">
+        <div className="container mx-auto px-4">
+          <h2 className="font-serif text-4xl font-bold mb-12 text-foreground">Amenities & Facilities</h2>
+          <AmenitiesGrid amenities={project.amenities} />
+        </div>
+      </section>
+
+      {/* Connectivity Section */}
+      <section className="bg-white py-16">
+        <div className="container mx-auto px-4">
+          <h2 className="font-serif text-4xl font-bold mb-12 text-foreground">Nearby Connectivity</h2>
+          <ConnectivitySection connectivity={project.connectivity} />
+        </div>
+      </section>
+
+      {/* Certificates Section */}
+      {project.certificates && project.certificates.length > 0 && (
+        <section className="bg-gray-50 py-16">
+          <div className="container mx-auto px-4">
+            <h2 className="font-serif text-4xl font-bold mb-12 text-foreground">Certifications & Awards</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {project.certificates.map((cert, index) => (
+                <div key={index} className="bg-white p-6 rounded-lg border shadow-sm" data-testid={`card-certificate-${index}`}>
+                  <CheckCircle className="w-8 h-8 text-primary mb-3" />
+                  <p className="font-semibold text-foreground">{cert}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
     </div>
   );
 }

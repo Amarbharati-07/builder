@@ -2,6 +2,17 @@ import { pgTable, text, serial, integer, boolean, timestamp, jsonb } from "drizz
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
+// === AMENITY TYPE ===
+export type Amenity = {
+  name: string;
+  image: string;
+};
+
+export type Connectivity = {
+  type: string;
+  distance: string;
+};
+
 // === PROJECTS ===
 export const projects = pgTable("projects", {
   id: serial("id").primaryKey(),
@@ -11,11 +22,12 @@ export const projects = pgTable("projects", {
   location: text("location").notNull(),
   address: text("address").notNull(),
   landmark: text("landmark").notNull(),
+  builderName: text("builder_name").notNull(),
   price: text("price").notNull(),
   pricePerSqft: text("price_per_sqft").notNull(),
   type: text("type").notNull(), // 'Residential', 'Commercial'
   description: text("description").notNull(),
-  amenities: jsonb("amenities").$type<string[]>().notNull(),
+  amenities: jsonb("amenities").$type<Amenity[]>().notNull(),
   images: jsonb("images").$type<string[]>().notNull(),
   coverImage: text("cover_image").notNull(),
   reraId: text("rera_id").notNull(),
@@ -26,6 +38,7 @@ export const projects = pgTable("projects", {
   floorPlans: jsonb("floor_plans").$type<string[]>().notNull().default([]),
   certificates: jsonb("certificates").$type<string[]>().notNull().default([]),
   videos: jsonb("videos").$type<string[]>().notNull().default([]),
+  connectivity: jsonb("connectivity").$type<Connectivity[]>().notNull().default([]),
 });
 
 // === TESTIMONIALS ===
