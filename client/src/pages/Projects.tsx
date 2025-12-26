@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useProjects } from "@/hooks/use-projects";
 import { motion, AnimatePresence } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
-import { MapPin, Building2, DollarSign, QrCode, X, Check, Eye, Download, Grid3x3, Image as ImageIcon, Clock, CheckCircle, Zap } from "lucide-react";
+import { MapPin, Building2, DollarSign, QrCode, X, Check, Eye, Download, Grid3x3, Image as ImageIcon } from "lucide-react";
 import type { Project } from "@shared/schema";
 import "@/styles/filter-bar.css";
 
@@ -14,12 +14,13 @@ export default function Projects() {
   // Get filtered projects based on active filter
   const getFilteredProjects = () => {
     if (!projects) return [];
-    if (activeFilter === "all") return projects;
-    if (activeFilter === "residential") return projects.filter(p => p.type.toLowerCase() === "residential");
-    if (activeFilter === "commercial") return projects.filter(p => p.type.toLowerCase() === "commercial");
-    if (activeFilter === "completed") return projects.filter(p => p.status === "completed");
-    if (activeFilter === "ongoing") return projects.filter(p => p.status === "ongoing");
-    if (activeFilter === "upcoming") return projects.filter(p => p.status === "upcoming");
+    const filter = activeFilter.toLowerCase();
+    if (filter === "all") return projects;
+    if (filter === "residential") return projects.filter(p => p.type.toLowerCase() === "residential");
+    if (filter === "commercial") return projects.filter(p => p.type.toLowerCase() === "commercial");
+    if (filter === "completed") return projects.filter(p => p.status === "completed");
+    if (filter === "ongoing") return projects.filter(p => p.status === "ongoing");
+    if (filter === "upcoming") return projects.filter(p => p.status === "upcoming");
     return projects;
   };
 
@@ -27,6 +28,15 @@ export default function Projects() {
 
   const amenities = selectedProject?.amenities;
   const images = selectedProject?.images as string[] | undefined;
+
+  const FILTER_OPTIONS = [
+    { value: "all", label: "All Projects" },
+    { value: "residential", label: "Residential" },
+    { value: "commercial", label: "Commercial" },
+    { value: "completed", label: "Completed" },
+    { value: "ongoing", label: "Ongoing" },
+    { value: "upcoming", label: "Upcoming" },
+  ];
 
   return (
     <div className="min-h-screen bg-white pt-20">
@@ -43,16 +53,9 @@ export default function Projects() {
       </div>
 
       {/* Unified Filter Bar */}
-      <div className="filter-bar-container">
+      <nav className="filter-bar-container" aria-label="Project categories">
         <div className="filter-bar-wrapper">
-          {[
-            { value: "all", label: "All Projects" },
-            { value: "residential", label: "Residential" },
-            { value: "commercial", label: "Commercial" },
-            { value: "completed", label: "Completed Projects" },
-            { value: "ongoing", label: "Ongoing Projects" },
-            { value: "upcoming", label: "Upcoming Projects" },
-          ].map((filter) => (
+          {FILTER_OPTIONS.map((filter) => (
             <button
               key={filter.value}
               onClick={() => setActiveFilter(filter.value)}
@@ -63,7 +66,7 @@ export default function Projects() {
             </button>
           ))}
         </div>
-      </div>
+      </nav>
 
       {/* Projects Grid */}
       <div className="container mx-auto px-4 pb-24">

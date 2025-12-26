@@ -1,37 +1,37 @@
 import { Button } from "@/components/ui/button";
+import "@/styles/filter-bar.css";
+
+export type ProjectFilterType = "All" | "Residential" | "Commercial" | "Completed" | "Ongoing" | "Upcoming";
 
 interface ProjectFilterProps {
-  selectedType: "All" | "Residential" | "Commercial";
-  onFilterChange: (type: "All" | "Residential" | "Commercial") => void;
+  selectedType: ProjectFilterType;
+  onFilterChange: (type: ProjectFilterType) => void;
 }
+
+const FILTER_OPTIONS: { label: string; value: ProjectFilterType }[] = [
+  { label: "All Projects", value: "All" },
+  { label: "Residential", value: "Residential" },
+  { label: "Commercial", value: "Commercial" },
+  { label: "Completed", value: "Completed" },
+  { label: "Ongoing", value: "Ongoing" },
+  { label: "Upcoming", value: "Upcoming" },
+];
 
 export function ProjectFilter({ selectedType, onFilterChange }: ProjectFilterProps) {
   return (
-    <div className="flex flex-wrap gap-3 mb-12">
-      <Button
-        variant={selectedType === "All" ? "default" : "outline"}
-        onClick={() => onFilterChange("All")}
-        data-testid="button-filter-all"
-        className={selectedType === "All" ? "bg-primary text-white" : "border-foreground"}
-      >
-        All Projects
-      </Button>
-      <Button
-        variant={selectedType === "Residential" ? "default" : "outline"}
-        onClick={() => onFilterChange("Residential")}
-        data-testid="button-filter-residential"
-        className={selectedType === "Residential" ? "bg-primary text-white" : "border-foreground"}
-      >
-        Residential
-      </Button>
-      <Button
-        variant={selectedType === "Commercial" ? "default" : "outline"}
-        onClick={() => onFilterChange("Commercial")}
-        data-testid="button-filter-commercial"
-        className={selectedType === "Commercial" ? "bg-primary text-white" : "border-foreground"}
-      >
-        Commercial
-      </Button>
-    </div>
+    <nav className="filter-bar-container" aria-label="Project categories">
+      <div className="filter-bar-wrapper">
+        {FILTER_OPTIONS.map((option) => (
+          <button
+            key={option.value}
+            onClick={() => onFilterChange(option.value)}
+            className={`filter-button ${selectedType === option.value ? "active" : ""}`}
+            data-testid={`button-filter-${option.value.toLowerCase()}`}
+          >
+            {option.label}
+          </button>
+        ))}
+      </div>
+    </nav>
   );
 }
