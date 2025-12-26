@@ -82,7 +82,7 @@ export default function Home() {
 
       {/* About Section */}
       <section className="about">
-        <div className="container">
+        <div className="about-section-wrapper">
           <div className="about-grid">
             <div className="about-visual">
               <motion.div 

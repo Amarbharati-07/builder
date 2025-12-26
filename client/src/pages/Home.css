@@ -59,6 +59,12 @@
   @apply py-16 md:py-24 bg-white;
 }
 
+/* Centered About Section Wrapper - Matches Projects Section Width */
+.about-section-wrapper {
+  @apply mx-auto px-4 sm:px-6 md:px-8;
+  max-width: 1400px;
+}
+
 .about-grid {
   @apply grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16 items-center;
 }
