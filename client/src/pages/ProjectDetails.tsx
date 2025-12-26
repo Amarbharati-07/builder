@@ -9,7 +9,7 @@ import { ArrowLeft, MapPin, Home, CheckCircle } from "lucide-react";
 import { Link } from "wouter";
 
 export default function ProjectDetail() {
-  const [match, params] = useRoute("/project/:slug");
+  const [match, params] = useRoute("/projects/:slug");
   const { data: projects } = useProjects();
   const project = projects?.find(p => p.slug === params?.slug);
 
