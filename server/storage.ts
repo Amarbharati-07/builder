@@ -53,8 +53,8 @@ export class MemStorage implements IStorage {
         address: "123 Heritage Plaza, Kalyan, Maharashtra - 421306",
         landmark: "Near Kalyan Railway Station",
         builderName: "Luxe Developments Ltd.",
-        price: "Starting ₹2.5 Cr*",
-        pricePerSqft: "₹15,000/sqft",
+        price: "Starting ₹45 Lakhs",
+        pricePerSqft: "10700",
         type: "Residential",
         description: "A masterpiece of modern living with premium finishes and smart home integration.",
         amenities: [
@@ -76,18 +76,32 @@ export class MemStorage implements IStorage {
         reraQRCode: "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=MH-KALYAN-001234",
         possessionDate: "Dec 2025",
         model3D: null,
-        brochure: null,
-        floorPlans: [],
+        brochure: "https://example.com/brochure.pdf",
+        floorPlans: [
+          "https://images.unsplash.com/photo-1580587767526-cf36701fe604?q=80&w=1000&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1502005229762-bc1340a7f50a?q=80&w=1000&auto=format&fit=crop"
+        ],
         certificates: ["ISO 9001:2015", "IGBC Gold"],
         videos: ["https://assets.mixkit.co/videos/preview/mixkit-modern-architecture-building-in-the-city-1188-large.mp4"],
         connectivity: [
-          { type: "Hospital", distance: "2.5 km" },
-          { type: "Metro Station", distance: "1.2 km" },
           { type: "Railway Station", distance: "0.8 km" },
-          { type: "Bus Stop", distance: "0.5 km" },
-          { type: "Market/School", distance: "1.5 km" }
-        ]
+          { type: "Metro Station", distance: "1.2 km" },
+          { type: "Hospital", distance: "2.5 km" },
+          { type: "Highway", distance: "1.5 km" },
+          { type: "School", distance: "0.5 km" }
+        ],
+        configurations: [
+          { type: "1 BHK", carpetAreaRange: "420-480", priceRange: "Starting ₹45 Lakhs" },
+          { type: "2 BHK", carpetAreaRange: "650-720", priceRange: "Starting ₹72 Lakhs" },
+          { type: "3 BHK", carpetAreaRange: "880-1050", priceRange: "Starting ₹1.05 Cr" }
+        ],
+        towerDetails: [
+          { name: "Tower A", floors: 22, units: 88 },
+          { name: "Tower B", floors: 22, units: 88 }
+        ],
+        walkthroughVideo: "https://assets.mixkit.co/videos/preview/mixkit-modern-architecture-building-in-the-city-1188-large.mp4"
       },
+
       {
         id: this.currentId++,
         title: "Royal Meadows",
@@ -97,8 +111,8 @@ export class MemStorage implements IStorage {
         address: "456 Green Valley, Kalyan, Maharashtra - 421306",
         landmark: "Near Kalyan Hospital",
         builderName: "Royal Constructions India",
-        price: "Starting ₹1.8 Cr*",
-        pricePerSqft: "₹12,000/sqft",
+        price: "Starting ₹72 Lakhs",
+        pricePerSqft: "11000",
         type: "Residential",
         description: "Serene residential community with landscaped gardens and eco-friendly designs.",
         amenities: [
@@ -118,7 +132,7 @@ export class MemStorage implements IStorage {
         reraQRCode: "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=MH-KALYAN-005678",
         possessionDate: "Mar 2026",
         model3D: null,
-        brochure: null,
+        brochure: "https://example.com/brochure.pdf",
         floorPlans: [],
         certificates: ["LEED Certified"],
         videos: [],
@@ -128,7 +142,15 @@ export class MemStorage implements IStorage {
           { type: "Railway Station", distance: "1.5 km" },
           { type: "Bus Stop", distance: "0.3 km" },
           { type: "Market/School", distance: "1.8 km" }
-        ]
+        ],
+        configurations: [
+          { type: "2 BHK", carpetAreaRange: "650-720", priceRange: "Starting ₹72 Lakhs" },
+          { type: "3 BHK", carpetAreaRange: "880-1050", priceRange: "Starting ₹1.05 Cr" }
+        ],
+        towerDetails: [
+          { name: "Wing A", floors: 18, units: 72 }
+        ],
+        walkthroughVideo: null
       },
       {
         id: this.currentId++,
@@ -139,8 +161,8 @@ export class MemStorage implements IStorage {
         address: "789 Sky Heights, Kalyan, Maharashtra - 421306",
         landmark: "Near Highway Access",
         builderName: "Skyline Developers",
-        price: "₹3.2 Cr - ₹5.5 Cr",
-        pricePerSqft: "₹18,000/sqft",
+        price: "Starting ₹3.2 Cr",
+        pricePerSqft: "18000",
         type: "Residential",
         description: "Ultra-luxury residential towers with panoramic city views and premium amenities.",
         amenities: [
@@ -161,7 +183,7 @@ export class MemStorage implements IStorage {
         reraQRCode: "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=MH-KALYAN-009012",
         possessionDate: "Jan 2024",
         model3D: null,
-        brochure: null,
+        brochure: "https://example.com/brochure.pdf",
         floorPlans: [],
         certificates: ["ISO 9001:2015", "Green Building"],
         videos: [],
@@ -171,7 +193,16 @@ export class MemStorage implements IStorage {
           { type: "Railway Station", distance: "3.5 km" },
           { type: "Bus Stop", distance: "1.2 km" },
           { type: "Market/School", distance: "2.0 km" }
-        ]
+        ],
+        configurations: [
+          { type: "3 BHK", carpetAreaRange: "1200-1450", priceRange: "Starting ₹3.2 Cr" },
+          { type: "4 BHK Penthouse", carpetAreaRange: "2200-2800", priceRange: "Starting ₹5.5 Cr" }
+        ],
+        towerDetails: [
+          { name: "Sky Tower 1", floors: 45, units: 120 },
+          { name: "Sky Tower 2", floors: 45, units: 120 }
+        ],
+        walkthroughVideo: null
       },
       {
         id: this.currentId++,
@@ -182,8 +213,8 @@ export class MemStorage implements IStorage {
         address: "321 Elite Plaza, Kalyan, Maharashtra - 421306",
         landmark: "Near Business District",
         builderName: "Elite Properties Group",
-        price: "Starting ₹2.2 Cr*",
-        pricePerSqft: "₹14,000/sqft",
+        price: "Starting ₹2.2 Cr",
+        pricePerSqft: "14000",
         type: "Residential",
         description: "Contemporary luxury living with smart home technology and sustainable features.",
         amenities: [
@@ -203,7 +234,7 @@ export class MemStorage implements IStorage {
         reraQRCode: "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=MH-KALYAN-003456",
         possessionDate: "Jun 2026",
         model3D: null,
-        brochure: null,
+        brochure: "https://example.com/brochure.pdf",
         floorPlans: [],
         certificates: ["FSC Certified"],
         videos: [],
@@ -213,7 +244,15 @@ export class MemStorage implements IStorage {
           { type: "Railway Station", distance: "1.0 km" },
           { type: "Bus Stop", distance: "0.6 km" },
           { type: "Market/School", distance: "1.3 km" }
-        ]
+        ],
+        configurations: [
+          { type: "2 BHK", carpetAreaRange: "750-850", priceRange: "Starting ₹2.2 Cr" },
+          { type: "3 BHK", carpetAreaRange: "1100-1300", priceRange: "Starting ₹3.5 Cr" }
+        ],
+        towerDetails: [
+          { name: "Phase 1", floors: 30, units: 150 }
+        ],
+        walkthroughVideo: null
       },
       {
         id: this.currentId++,
@@ -224,8 +263,8 @@ export class MemStorage implements IStorage {
         address: "654 Prime Avenue, Kalyan, Maharashtra - 421306",
         landmark: "Near Shopping Mall",
         builderName: "Prime Real Estate",
-        price: "Starting ₹2.0 Cr*",
-        pricePerSqft: "₹13,500/sqft",
+        price: "Starting ₹2.0 Cr",
+        pricePerSqft: "13500",
         type: "Residential",
         description: "Modern residential complex with world-class facilities and strategic location.",
         amenities: [
@@ -245,7 +284,7 @@ export class MemStorage implements IStorage {
         reraQRCode: "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=MH-KALYAN-007890",
         possessionDate: "Sep 2025",
         model3D: null,
-        brochure: null,
+        brochure: "https://example.com/brochure.pdf",
         floorPlans: [],
         certificates: ["Energy Star"],
         videos: [],
@@ -255,7 +294,15 @@ export class MemStorage implements IStorage {
           { type: "Railway Station", distance: "1.3 km" },
           { type: "Bus Stop", distance: "0.7 km" },
           { type: "Market/School", distance: "1.6 km" }
-        ]
+        ],
+        configurations: [
+          { type: "2 BHK", carpetAreaRange: "680-750", priceRange: "Starting ₹2.0 Cr" },
+          { type: "3 BHK", carpetAreaRange: "950-1100", priceRange: "Starting ₹3.1 Cr" }
+        ],
+        towerDetails: [
+          { name: "Tower 1", floors: 25, units: 100 }
+        ],
+        walkthroughVideo: null
       },
       // Commercial Projects
       {
@@ -267,8 +314,8 @@ export class MemStorage implements IStorage {
         address: "999 Business Hub, Kalyan, Maharashtra - 421306",
         landmark: "Near Business Park",
         builderName: "Corporate Developments",
-        price: "Starting ₹50 L/unit",
-        pricePerSqft: "₹8,500/sqft",
+        price: "Starting ₹50 Lakhs",
+        pricePerSqft: "8500",
         type: "Commercial",
         description: "State-of-the-art commercial complex for offices, retail, and business services.",
         amenities: [
@@ -288,7 +335,7 @@ export class MemStorage implements IStorage {
         reraQRCode: "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=MH-KALYAN-COM-001",
         possessionDate: "Apr 2026",
         model3D: null,
-        brochure: null,
+        brochure: "https://example.com/brochure.pdf",
         floorPlans: [],
         certificates: ["IGBC Platinum"],
         videos: [],
@@ -298,7 +345,15 @@ export class MemStorage implements IStorage {
           { type: "Railway Station", distance: "2.0 km" },
           { type: "Bus Stop", distance: "0.8 km" },
           { type: "Market/School", distance: "1.2 km" }
-        ]
+        ],
+        configurations: [
+          { type: "Office Space", carpetAreaRange: "450-1200", priceRange: "Starting ₹50 Lakhs" },
+          { type: "Retail Shop", carpetAreaRange: "200-800", priceRange: "Starting ₹80 Lakhs" }
+        ],
+        towerDetails: [
+          { name: "Business Wing", floors: 12, units: 60 }
+        ],
+        walkthroughVideo: null
       },
       {
         id: this.currentId++,
@@ -309,8 +364,8 @@ export class MemStorage implements IStorage {
         address: "555 Shopping Center, Kalyan, Maharashtra - 421306",
         landmark: "Downtown Area",
         builderName: "Retail Solutions Ltd",
-        price: "₹40 L - ₹2.5 Cr",
-        pricePerSqft: "₹7,500/sqft",
+        price: "Starting ₹40 Lakhs",
+        pricePerSqft: "7500",
         type: "Commercial",
         description: "Premium retail and entertainment destination with modern infrastructure.",
         amenities: [
@@ -330,7 +385,7 @@ export class MemStorage implements IStorage {
         reraQRCode: "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=MH-KALYAN-COM-002",
         possessionDate: "Oct 2023",
         model3D: null,
-        brochure: null,
+        brochure: "https://example.com/brochure.pdf",
         floorPlans: [],
         certificates: ["LEED Gold"],
         videos: [],
@@ -340,7 +395,15 @@ export class MemStorage implements IStorage {
           { type: "Railway Station", distance: "0.8 km" },
           { type: "Bus Stop", distance: "0.2 km" },
           { type: "Market/School", distance: "0.4 km" }
-        ]
+        ],
+        configurations: [
+          { type: "Shop", carpetAreaRange: "150-500", priceRange: "Starting ₹40 Lakhs" },
+          { type: "Showroom", carpetAreaRange: "800-2500", priceRange: "Starting ₹1.5 Cr" }
+        ],
+        towerDetails: [
+          { name: "Retail Block", floors: 4, units: 120 }
+        ],
+        walkthroughVideo: null
       },
       {
         id: this.currentId++,
@@ -351,8 +414,8 @@ export class MemStorage implements IStorage {
         address: "888 Innovation Drive, Kalyan, Maharashtra - 421306",
         landmark: "Industrial Zone",
         builderName: "Tech Infrastructure",
-        price: "Starting ₹75 L/unit",
-        pricePerSqft: "₹9,000/sqft",
+        price: "Starting ₹75 Lakhs",
+        pricePerSqft: "9000",
         type: "Commercial",
         description: "Specialized technology park with advanced IT infrastructure and facilities.",
         amenities: [
@@ -371,7 +434,7 @@ export class MemStorage implements IStorage {
         reraQRCode: "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=MH-KALYAN-COM-003",
         possessionDate: "Aug 2026",
         model3D: null,
-        brochure: null,
+        brochure: "https://example.com/brochure.pdf",
         floorPlans: [],
         certificates: ["ISO 27001"],
         videos: [],
@@ -381,7 +444,15 @@ export class MemStorage implements IStorage {
           { type: "Railway Station", distance: "2.8 km" },
           { type: "Bus Stop", distance: "1.5 km" },
           { type: "Market/School", distance: "2.5 km" }
-        ]
+        ],
+        configurations: [
+          { type: "IT Office", carpetAreaRange: "1000-5000", priceRange: "Starting ₹75 Lakhs" },
+          { type: "Data Center", carpetAreaRange: "5000-20000", priceRange: "Starting ₹5 Cr" }
+        ],
+        towerDetails: [
+          { name: "IT Tower A", floors: 20, units: 40 }
+        ],
+        walkthroughVideo: null
       },
       {
         id: this.currentId++,
@@ -392,8 +463,8 @@ export class MemStorage implements IStorage {
         address: "222 Healthcare Hub, Kalyan, Maharashtra - 421306",
         landmark: "Medical District",
         builderName: "Healthcare Developments",
-        price: "Starting ₹1 Cr/unit",
-        pricePerSqft: "₹10,000/sqft",
+        price: "Starting ₹1 Cr",
+        pricePerSqft: "10000",
         type: "Commercial",
         description: "Integrated medical and healthcare complex with modern diagnostic facilities.",
         amenities: [
@@ -412,7 +483,7 @@ export class MemStorage implements IStorage {
         reraQRCode: "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=MH-KALYAN-COM-004",
         possessionDate: "Dec 2026",
         model3D: null,
-        brochure: null,
+        brochure: "https://example.com/brochure.pdf",
         floorPlans: [],
         certificates: ["Healthcare Certified"],
         videos: [],
@@ -422,7 +493,15 @@ export class MemStorage implements IStorage {
           { type: "Railway Station", distance: "1.8 km" },
           { type: "Bus Stop", distance: "0.9 km" },
           { type: "Market/School", distance: "1.1 km" }
-        ]
+        ],
+        configurations: [
+          { type: "Clinic Space", carpetAreaRange: "300-600", priceRange: "Starting ₹1 Cr" },
+          { type: "Diagnostics Wing", carpetAreaRange: "1000-2500", priceRange: "Starting ₹3 Cr" }
+        ],
+        towerDetails: [
+          { name: "Med-Wing 1", floors: 10, units: 100 }
+        ],
+        walkthroughVideo: null
       }
     ];
 
@@ -450,7 +529,10 @@ export class MemStorage implements IStorage {
       floorPlans: project.floorPlans ?? [],
       certificates: project.certificates ?? [],
       videos: project.videos ?? [],
-      connectivity: project.connectivity ?? []
+      connectivity: project.connectivity ?? [],
+      configurations: project.configurations ?? [],
+      towerDetails: project.towerDetails ?? [],
+      walkthroughVideo: project.walkthroughVideo ?? null
     };
     this.projects.set(id, newProject);
     return newProject;

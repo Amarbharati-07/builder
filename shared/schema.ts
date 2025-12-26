@@ -2,7 +2,7 @@ import { pgTable, text, serial, integer, boolean, timestamp, jsonb } from "drizz
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
-// === AMENITY TYPE ===
+// === TYPES ===
 export type Amenity = {
   name: string;
   image: string;
@@ -13,17 +13,29 @@ export type Connectivity = {
   distance: string;
 };
 
+export type Configuration = {
+  type: string; // e.g., "1 BHK", "2 BHK", "Office Space"
+  carpetAreaRange: string; // e.g., "420-480"
+  priceRange: string; // e.g., "Starting ₹45 Lakhs"
+};
+
+export type TowerDetail = {
+  name: string;
+  floors: number;
+  units: number;
+};
+
 // === PROJECTS ===
 export const projects = pgTable("projects", {
   id: serial("id").primaryKey(),
   title: text("title").notNull(),
   slug: text("slug").notNull().unique(),
   status: text("status").notNull(), // 'ongoing', 'completed', 'upcoming'
-  location: text("location").notNull(),
-  address: text("address").notNull(),
+  location: text("location").notNull(), // e.g., "Kalyan, Maharashtra"
+  address: text("address").notNull(), // Full address with pincode
   landmark: text("landmark").notNull(),
   builderName: text("builder_name").notNull(),
-  price: text("price").notNull(),
+  price: text("price").notNull(), // Basic starting price for reference
   pricePerSqft: text("price_per_sqft").notNull(),
   type: text("type").notNull(), // 'Residential', 'Commercial'
   description: text("description").notNull(),
@@ -39,6 +51,10 @@ export const projects = pgTable("projects", {
   certificates: jsonb("certificates").$type<string[]>().notNull().default([]),
   videos: jsonb("videos").$type<string[]>().notNull().default([]),
   connectivity: jsonb("connectivity").$type<Connectivity[]>().notNull().default([]),
+  // New Fields
+  configurations: jsonb("configurations").$type<Configuration[]>().notNull().default([]),
+  towerDetails: jsonb("tower_details").$type<TowerDetail[]>().notNull().default([]),
+  walkthroughVideo: text("walkthrough_video"),
 });
 
 // === TESTIMONIALS ===
@@ -58,7 +74,7 @@ export const jobs = pgTable("jobs", {
   title: text("title").notNull(),
   department: text("department").notNull(),
   location: text("location").notNull(),
-  type: text("type").notNull(), // 'Full-time', etc.
+  type: text("type").notNull(), 
   description: text("description").notNull(),
 });
 
@@ -93,19 +109,13 @@ export const insertLeadSchema = createInsertSchema(leads).omit({ id: true, creat
 // === TYPES ===
 export type Project = typeof projects.$inferSelect;
 export type InsertProject = z.infer<typeof insertProjectSchema>;
-
 export type Testimonial = typeof testimonials.$inferSelect;
 export type InsertTestimonial = z.infer<typeof insertTestimonialSchema>;
-
 export type Job = typeof jobs.$inferSelect;
 export type InsertJob = z.infer<typeof insertJobSchema>;
-
 export type News = typeof news.$inferSelect;
 export type InsertNews = z.infer<typeof insertNewsSchema>;
-
 export type Lead = typeof leads.$inferSelect;
 export type InsertLead = z.infer<typeof insertLeadSchema>;
-
-// Chat type
 export type ChatRequest = { message: string };
 export type ChatResponse = { message: string };

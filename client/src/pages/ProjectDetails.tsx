@@ -113,36 +113,122 @@ export default function ProjectDetail() {
                 </div>
               </div>
 
-              {/* Pricing Section */}
-              <div className="mb-12">
-                <h2 className="font-serif text-3xl font-bold mb-6 text-foreground">Pricing</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  <div className="bg-gray-50 p-6 rounded-lg">
-                    <h3 className="font-semibold text-muted-foreground text-sm uppercase mb-2">Price Per Sq. Ft.</h3>
-                    <p className="font-serif text-3xl font-bold text-foreground" data-testid="text-price-per-sqft">
-                      {project.pricePerSqft}
-                    </p>
+              {/* Configuration & Pricing */}
+              {project.configurations && project.configurations.length > 0 && (
+                <div className="mb-12">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                      <Zap className="w-5 h-5 text-primary" />
+                    </div>
+                    <h2 className="font-serif text-3xl font-bold text-foreground">Configuration & Pricing</h2>
                   </div>
-                  <div className="bg-gray-50 p-6 rounded-lg">
-                    <h3 className="font-semibold text-muted-foreground text-sm uppercase mb-2">Starting Price</h3>
-                    <p className="font-serif text-3xl font-bold text-foreground" data-testid="text-price">
-                      {project.price}
-                    </p>
+                  <div className="overflow-hidden rounded-xl border border-gray-200 shadow-sm">
+                    <table className="w-full border-collapse">
+                      <thead>
+                        <tr className="bg-gray-50 text-left border-b border-gray-200">
+                          <th className="p-4 md:p-6 font-bold uppercase text-xs tracking-wider text-muted-foreground">Typology</th>
+                          <th className="p-4 md:p-6 font-bold uppercase text-xs tracking-wider text-muted-foreground">Carpet Area (sq.ft.)</th>
+                          <th className="p-4 md:p-6 font-bold uppercase text-xs tracking-wider text-muted-foreground">Price</th>
+                          <th className="p-4 md:p-6 text-right"></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {project.configurations.map((config, idx) => (
+                          <tr key={idx} className="hover:bg-gray-50/50 transition-colors border-b border-gray-100 last:border-0">
+                            <td className="p-4 md:p-6 font-bold text-foreground">{config.type}</td>
+                            <td className="p-4 md:p-6 text-muted-foreground font-medium">{config.carpetAreaRange} sq.ft.</td>
+                            <td className="p-4 md:p-6 font-black text-primary md:text-lg">{config.priceRange}</td>
+                            <td className="p-4 md:p-6 text-right">
+                              <Link href="/contact">
+                                <Button size="sm" variant="outline" className="font-bold text-[10px] uppercase">Details</Button>
+                              </Link>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                  <p className="mt-4 text-[10px] text-muted-foreground flex items-center gap-1.5 italic">
+                    <Info className="w-3 h-3" />
+                    * Pricing is calculated based on current market trends and base rate. Govt. taxes extra.
+                  </p>
+                </div>
+              )}
+
+              {/* Tower Details */}
+              {project.towerDetails && project.towerDetails.length > 0 && (
+                <div className="mb-12">
+                  <h2 className="font-serif text-3xl font-bold mb-6 text-foreground">Project Layout</h2>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {project.towerDetails.map((tower, idx) => (
+                      <div key={idx} className="p-4 border rounded-lg bg-gray-50">
+                        <h4 className="font-bold text-lg mb-2">{tower.name}</h4>
+                        <div className="flex justify-between text-sm text-muted-foreground">
+                          <span>Floors: {tower.floors}</span>
+                          <span>Total Units: {tower.units}</span>
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </div>
-              </div>
+              )}
+
+              {/* Floor Plans */}
+              {project.floorPlans && project.floorPlans.length > 0 && (
+                <div className="mb-12">
+                  <h2 className="font-serif text-3xl font-bold mb-6 text-foreground">Floor Plans</h2>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    {project.floorPlans.map((plan, idx) => (
+                      <div key={idx} className="group relative aspect-video overflow-hidden rounded-lg border">
+                        <img 
+                          src={plan} 
+                          alt={`Floor Plan ${idx + 1}`} 
+                          className="w-full h-full object-cover transition-transform group-hover:scale-105"
+                        />
+                        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                          <Button variant="secondary" size="sm">View Plan</Button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Walkthrough Video */}
+              {project.walkthroughVideo && (
+                <div className="mb-12">
+                  <h2 className="font-serif text-3xl font-bold mb-6 text-foreground">Project Walkthrough</h2>
+                  <div className="aspect-video rounded-lg overflow-hidden border bg-black shadow-xl">
+                    <video controls className="w-full h-full object-cover">
+                      <source src={project.walkthroughVideo} type="video/mp4" />
+                    </video>
+                  </div>
+                </div>
+              )}
             </div>
 
             {/* Sidebar CTA */}
             <div className="lg:col-span-1">
-              <div className="bg-primary text-white p-8 rounded-lg sticky top-24">
+              <div className="bg-primary text-white p-8 rounded-lg sticky top-24 shadow-2xl">
                 <h3 className="text-2xl font-bold mb-4">Interested in this property?</h3>
-                <p className="text-white/90 mb-6">Connect with our property specialists to learn more.</p>
-                <Link href="/contact">
-                  <Button size="lg" className="w-full bg-white text-primary hover:bg-gray-100">
-                    Enquire Now
+                <p className="text-white/90 mb-6">Connect with our property specialists to learn more about early bird offers.</p>
+                <div className="space-y-4">
+                  <Link href="/contact">
+                    <Button size="lg" className="w-full bg-white text-primary hover:bg-gray-100 font-bold">
+                      Enquire Now
+                    </Button>
+                  </Link>
+                  <Button variant="outline" size="lg" className="w-full border-white text-white hover:bg-white/10 font-bold">
+                    Call Now: +91 999 000 0000
                   </Button>
-                </Link>
+                  {project.brochure && (
+                    <a href={project.brochure} target="_blank" rel="noopener noreferrer">
+                      <Button variant="ghost" size="lg" className="w-full text-white hover:bg-white/10 mt-4 border border-white/30">
+                        Download Brochure
+                      </Button>
+                    </a>
+                  )}
+                </div>
               </div>
             </div>
           </div>
