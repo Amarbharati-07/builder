@@ -7,6 +7,7 @@ import { ProjectCard } from "@/components/ProjectCard";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { KeyBenefitsSection, TeamSection, TrustCertificatesSection } from "@/components/ProjectSections";
+import heroVideo from "@assets/generated_videos/cinematic_architectural_background_video_for_hero_section.mp4";
 import "./Home.css";
 
 export default function Home() {
@@ -20,7 +21,7 @@ export default function Home() {
     <div className="flex flex-col">
       {/* Hero Section */}
       <section className="hero-section">
-        {/* Hero Background - Architecture Skyscraper Video/Image */}
+        {/* Hero Background - Cinematic Architectural Video */}
         <div className="absolute inset-0 z-0">
           <video 
             autoPlay 
@@ -28,9 +29,8 @@ export default function Home() {
             loop 
             playsInline
             className="w-full h-full object-cover"
-            poster="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop"
           >
-            <source src="https://assets.mixkit.co/videos/preview/mixkit-modern-architecture-building-in-the-city-1188-large.mp4" type="video/mp4" />
+            <source src={heroVideo} type="video/mp4" />
           </video>
           <div className="hero-overlay" />
         </div>
