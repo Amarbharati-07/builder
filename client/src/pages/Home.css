@@ -133,11 +133,15 @@
 }
 
 .section-header {
-  @apply flex flex-col md:flex-row justify-between items-start md:items-end mb-12 md:mb-16;
+  @apply flex flex-col md:flex-row justify-between items-start md:items-center gap-4 md:gap-8 mb-10 md:mb-14;
+}
+
+.header-text {
+  @apply flex-1;
 }
 
 .section-label {
-  @apply text-primary font-medium tracking-widest uppercase text-sm block mb-2;
+  @apply text-primary font-medium tracking-widest uppercase text-xs md:text-sm block mb-2;
 }
 
 .section-title {
@@ -145,15 +149,16 @@
 }
 
 .btn-view-all {
-  @apply hidden md:flex border-foreground hover:bg-foreground hover:text-white transition-colors;
+  @apply hidden md:inline-block border-foreground text-foreground hover:bg-foreground hover:text-white transition-colors px-4 py-2 rounded-sm font-semibold text-sm;
 }
 
+/* Projects Grid - Same as Projects Page */
 .projects-grid {
-  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-12;
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-12;
 }
 
 .skeleton-card {
-  @apply h-[400px] md:h-[500px] bg-gray-200 animate-pulse rounded-lg;
+  @apply h-[420px] sm:h-[460px] bg-gradient-to-br from-gray-200 to-gray-100 rounded-lg animate-pulse;
 }
 
 .empty-state {
@@ -165,11 +170,11 @@
 }
 
 .mobile-view-btn {
-  @apply flex justify-center md:hidden;
+  @apply flex justify-center md:hidden mb-8;
 }
 
 .btn-view-all-mobile {
-  @apply w-full border-foreground hover:bg-foreground hover:text-white transition-colors;
+  @apply w-full border-foreground text-foreground hover:bg-foreground hover:text-white transition-colors px-4 py-2 rounded-sm font-semibold;
 }
 
 .text-gold {
