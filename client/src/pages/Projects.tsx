@@ -46,24 +46,25 @@ export default function Projects() {
         </div>
       </div>
 
-      {/* Filter Bar */}
-      <nav className="filters" aria-label="Project categories">
-        <div className="filters-wrapper">
-          {FILTER_OPTIONS.map((filter) => (
-            <button
-              key={filter.value}
-              onClick={() => setActiveFilter(filter.value)}
-              data-testid={`button-filter-${filter.value}`}
-              className={`filter-btn ${activeFilter === filter.value ? "active" : ""}`}
-            >
-              {filter.label}
-            </button>
-          ))}
-        </div>
-      </nav>
+      {/* Projects Section Wrapper - Perfectly Centered */}
+      <div className="projects-section-wrapper">
+        {/* Filter Bar */}
+        <nav className="filters" aria-label="Project categories">
+          <div className="filters-wrapper">
+            {FILTER_OPTIONS.map((filter) => (
+              <button
+                key={filter.value}
+                onClick={() => setActiveFilter(filter.value)}
+                data-testid={`button-filter-${filter.value}`}
+                className={`filter-btn ${activeFilter === filter.value ? "active" : ""}`}
+              >
+                {filter.label}
+              </button>
+            ))}
+          </div>
+        </nav>
 
-      {/* Projects Grid */}
-      <div className="container projects-container">
+        {/* Projects Grid */}
         {isLoading ? (
           <div className="projects-skeleton">
             {[1, 2, 3].map((i) => (

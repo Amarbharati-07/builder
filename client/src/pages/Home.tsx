@@ -152,7 +152,7 @@ export default function Home() {
 
       {/* Projects Section */}
       <section className="featured-projects">
-        <div className="container">
+        <div className="projects-section-wrapper">
           <div className="section-header">
             <div className="header-text">
               <span className="section-label">Portfolio</span>

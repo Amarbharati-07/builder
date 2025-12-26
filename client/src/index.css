@@ -190,6 +190,12 @@
   @apply w-full;
 }
 
+/* Centered Projects Section Wrapper - For both Home and Projects pages */
+.projects-section-wrapper {
+  @apply mx-auto px-4 sm:px-6 md:px-8 py-12 md:py-16 lg:py-20;
+  max-width: 1400px;
+}
+
 .projects-container {
   @apply px-4 py-16 md:py-24;
 }
@@ -208,6 +214,10 @@
 
 .project-item {
   @apply h-full;
+}
+
+.projects-list-wrapper {
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8;
 }
 
 /* Project Card Structure */
