@@ -72,6 +72,17 @@ export function Layout({ children }: { children: React.ReactNode }) {
               <Button 
                 variant={isScrolled || location !== "/" ? "default" : "outline"}
                 className={cn(
+                  "rounded-none px-6 mr-4",
+                  !isScrolled && location === "/" && "border-white text-white hover:bg-white hover:text-black hover:border-white"
+                )}
+              >
+                Call: +91 999 000 0000
+              </Button>
+            </Link>
+            <Link href="/contact">
+              <Button 
+                variant={isScrolled || location !== "/" ? "default" : "outline"}
+                className={cn(
                   "rounded-none px-6",
                   !isScrolled && location === "/" && "border-white text-white hover:bg-white hover:text-black hover:border-white"
                 )}

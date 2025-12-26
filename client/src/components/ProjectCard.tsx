@@ -53,10 +53,13 @@ export function ProjectCard({ project }: { project: Project }) {
           {/* Real Estate Configuration Area */}
           <div className="bg-gray-50 p-3 rounded-lg border border-gray-100 mb-4 space-y-2">
             {project.configurations && project.configurations.length > 0 ? (
-              project.configurations.slice(0, 2).map((config, idx) => (
-                <div key={idx} className="flex justify-between items-center text-[11px]">
-                  <span className="font-bold text-foreground uppercase">{config.type}</span>
-                  <span className="text-muted-foreground">{config.carpetAreaRange} sq.ft.</span>
+              project.configurations.map((config, idx) => (
+                <div key={idx} className="flex justify-between items-center text-[11px] border-b border-gray-100 last:border-0 pb-1 last:pb-0">
+                  <div className="flex flex-col">
+                    <span className="font-bold text-foreground uppercase">{config.type}</span>
+                    <span className="text-[9px] text-muted-foreground">{config.carpetAreaRange} sq.ft.</span>
+                  </div>
+                  <span className="font-bold text-primary">{config.priceRange}</span>
                 </div>
               ))
             ) : (

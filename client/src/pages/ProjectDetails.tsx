@@ -93,10 +93,15 @@ export default function ProjectDetail() {
                 </div>
                 <div>
                   <h3 className="font-semibold text-foreground mb-2 text-sm uppercase tracking-widest">RERA ID</h3>
-                  <p className="text-lg text-foreground flex items-center gap-2" data-testid="text-rera-id">
-                    {project.reraId}
-                    <CheckCircle className="w-4 h-4 text-green-500" />
-                  </p>
+                  <div className="flex items-center gap-4">
+                    <p className="text-lg text-foreground flex items-center gap-2" data-testid="text-rera-id">
+                      {project.reraId}
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                    </p>
+                    {project.reraQRCode && (
+                      <img src={project.reraQRCode} alt="RERA QR Code" className="w-12 h-12 border p-1 rounded bg-white shadow-sm" />
+                    )}
+                  </div>
                 </div>
                 <div>
                   <h3 className="font-semibold text-foreground mb-2 text-sm uppercase tracking-widest">Possession Date</h3>
