@@ -14,9 +14,16 @@ export default function Home() {
   const [selectedType, setSelectedType] = useState<"All" | "Residential" | "Commercial" | "Completed" | "Ongoing" | "Upcoming">("All");
 
   // Filter projects based on selected type
-  const filteredProjects = projects?.filter(
-    p => selectedType === "All" || p.type === selectedType
-  ) || [];
+  const filteredProjects = projects?.filter(p => {
+    const filter = selectedType.toLowerCase();
+    if (filter === "all") return true;
+    if (filter === "residential") return p.type.toLowerCase() === "residential";
+    if (filter === "commercial") return p.type.toLowerCase() === "commercial";
+    if (filter === "completed") return p.status === "completed";
+    if (filter === "ongoing") return p.status === "ongoing";
+    if (filter === "upcoming") return p.status === "upcoming";
+    return true;
+  }) || [];
 
   return (
     <div className="flex flex-col">
