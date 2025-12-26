@@ -15,7 +15,7 @@ export default function Projects() {
     return p.type.toLowerCase() === selectedType.toLowerCase();
   });
 
-  const amenities = selectedProject?.amenities as string[] | undefined;
+  const amenities = selectedProject?.amenities;
   const images = selectedProject?.images as string[] | undefined;
 
   return (
@@ -315,7 +315,7 @@ export default function Projects() {
                           {amenities.map((amenity, idx) => (
                             <div key={idx} className="flex items-center gap-2 p-3 border border-gray-200 rounded-lg hover:border-amber-300 transition" data-testid={`item-amenity-${idx}`}>
                               <Check className="w-5 h-5 text-amber-600 flex-shrink-0" />
-                              <span className="font-medium text-sm">{amenity}</span>
+                              <span className="font-medium text-sm">{amenity.name}</span>
                             </div>
                           ))}
                         </div>
