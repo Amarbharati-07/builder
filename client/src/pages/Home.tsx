@@ -11,7 +11,7 @@ import "./Home.css";
 
 export default function Home() {
   const { data: projects, isLoading: loadingProjects } = useProjects();
-  const [selectedType, setSelectedType] = useState<"All" | "Residential" | "Commercial">("All");
+  const [selectedType, setSelectedType] = useState<"All" | "Residential" | "Commercial" | "Completed" | "Ongoing" | "Upcoming">("All");
 
   // Filter projects based on selected type
   const filteredProjects = projects?.filter(

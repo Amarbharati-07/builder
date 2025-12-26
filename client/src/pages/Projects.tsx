@@ -148,13 +148,13 @@ export default function Projects() {
                           </div>
                         </div>
                       </div>
-                      <button
-                        onClick={() => setSelectedProject(project)}
-                        data-testid={`button-know-more-${project.slug}`}
-                        className="mt-6 px-8 py-3 bg-amber-600 hover:bg-amber-700 text-white font-bold rounded-lg transition transform hover:scale-105 inline-block"
+                      <Link
+                        href={`/projects/${project.slug}`}
+                        data-testid={`link-know-more-${project.slug}`}
+                        className="mt-6 px-8 py-3 bg-amber-600 hover:bg-amber-700 text-white font-bold rounded-lg transition transform hover:scale-105 inline-block text-center"
                       >
                         Know More
-                      </button>
+                      </Link>
                     </div>
                   </div>
                 </div>
