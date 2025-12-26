@@ -72,7 +72,7 @@ export default function ProjectDetail() {
                     {project.type}
                   </Badge>
                 </div>
-                <h1 className="font-serif text-5xl font-bold text-foreground" data-testid="text-project-title">
+                <h1 className="font-serif text-3xl md:text-5xl font-bold text-foreground" data-testid="text-project-title">
                   {project.title}
                 </h1>
               </div>

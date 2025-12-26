@@ -36,14 +36,14 @@ export default function Projects() {
   ];
 
   return (
-    <div className="min-h-screen bg-white pt-20">
+    <div className="min-h-screen bg-white pt-16">
       {/* Hero Section */}
-      <div className="bg-foreground text-white py-16 mb-16">
+      <div className="bg-foreground text-white py-12 md:py-16 mb-8 md:mb-16">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="font-serif text-4xl md:text-5xl font-bold mb-4">
+          <h1 className="font-serif text-3xl md:text-5xl font-bold mb-4">
             Our Premium Projects
           </h1>
-          <p className="text-white/70 max-w-2xl mx-auto">
+          <p className="text-white/70 max-w-2xl mx-auto text-sm md:text-base">
             Discover our collection of luxury residential and commercial developments across prime locations.
           </p>
         </div>
