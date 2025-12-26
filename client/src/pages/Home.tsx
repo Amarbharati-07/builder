@@ -142,13 +142,13 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Featured Projects */}
-      <section className="section-padding bg-secondary">
+      {/* Our Premium Projects */}
+      <section className="py-24 bg-white">
         <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-12">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-16">
             <div>
               <span className="text-primary font-medium tracking-widest uppercase text-sm block mb-2">Portfolio</span>
-              <h2 className="font-serif text-4xl font-bold text-foreground">Featured Projects</h2>
+              <h2 className="font-serif text-4xl md:text-5xl font-bold text-foreground">Our Premium Projects</h2>
             </div>
             <Link href="/projects">
               <Button variant="outline" className="hidden md:flex mt-4 md:mt-0 border-foreground hover:bg-foreground hover:text-white transition-colors">
@@ -157,43 +157,14 @@ export default function Home() {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
-            <div className="featured-video-container group">
-               <video 
-                autoPlay 
-                muted 
-                loop 
-                className="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition duration-700"
-              >
-                <source src="https://assets.mixkit.co/videos/preview/mixkit-architectural-shot-of-a-modern-building-exterior-42861-large.mp4" type="video/mp4" />
-              </video>
-              <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition duration-700" />
-              <div className="absolute bottom-8 left-8 text-white">
-                <Badge className="bg-primary mb-4 text-xs uppercase tracking-widest">Showcase Video</Badge>
-                <h3 className="text-3xl font-serif font-bold">Our Building Legacy</h3>
-                <p className="text-white/80 max-w-md mt-2">Explore how we redefine modern living through architectural innovation and sustainable practices.</p>
-              </div>
-            </div>
-            <div className="flex flex-col justify-center space-y-8">
-              <div className="p-6 bg-white border-l-4 border-primary shadow-sm hover:shadow-md transition">
-                <h4 className="font-bold text-xl mb-2">Sustainable Design</h4>
-                <p className="text-muted-foreground italic">"We incorporate green building practices into every square foot of our developments, ensuring a better future."</p>
-              </div>
-              <div className="p-6 bg-white border-l-4 border-primary shadow-sm hover:shadow-md transition">
-                <h4 className="font-bold text-xl mb-2">Premium Materials</h4>
-                <p className="text-muted-foreground italic">"From Italian marble to smart-home automation, we only source the finest materials for your comfort."</p>
-              </div>
-            </div>
-          </div>
-
           {loadingProjects ? (
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {[1, 2, 3].map(i => (
-                <div key={i} className="h-[450px] bg-gray-200 animate-pulse rounded-lg" />
+                <div key={i} className="h-[500px] bg-gray-200 animate-pulse rounded-lg" />
               ))}
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
               {featuredProjects?.map((project, index) => (
                 <motion.div
                   key={project.id}
@@ -208,7 +179,7 @@ export default function Home() {
             </div>
           )}
           
-          <div className="mt-8 md:hidden flex justify-center">
+          <div className="flex justify-center md:hidden">
             <Link href="/projects">
               <Button variant="outline" className="border-foreground hover:bg-foreground hover:text-white transition-colors">
                 View All Projects
