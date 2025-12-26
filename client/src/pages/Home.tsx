@@ -1,18 +1,14 @@
 import { motion } from "framer-motion";
 import { Link } from "wouter";
-import { ArrowRight, Star, Clock, Award, Building } from "lucide-react";
+import { ArrowRight, Clock, Award, Building } from "lucide-react";
 import { useProjects } from "@/hooks/use-projects";
-import { useTestimonials } from "@/hooks/use-content";
 import { ProjectCard } from "@/components/ProjectCard";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { KeyBenefitsSection, TeamSection, TrustCertificatesSection } from "@/components/ProjectSections";
 import heroVideo from "@assets/generated_videos/cinematic_architectural_background_video_for_hero_section.mp4";
 import "./Home.css";
 
 export default function Home() {
   const { data: projects, isLoading: loadingProjects } = useProjects();
-  const { data: testimonials } = useTestimonials();
 
   // Featured projects are just the first 3 for this example
   const featuredProjects = projects?.slice(0, 3);
@@ -189,68 +185,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Testimonials Preview */}
-      <section className="py-24 bg-foreground text-white overflow-hidden relative">
-        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5" />
-        <div className="container mx-auto px-4 relative z-10 text-center">
-          <h2 className="font-serif text-4xl font-bold mb-16">Client Experiences</h2>
-          <div className="max-w-4xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {testimonials?.slice(0, 2).map((t) => (
-                <div key={t.id} className="bg-white/5 backdrop-blur-sm p-8 text-left border border-white/10 hover:border-primary/50 transition-colors rounded-sm">
-                  <div className="flex text-primary mb-4">
-                    {[...Array(t.rating)].map((_, i) => <Star key={i} className="w-4 h-4 fill-current" />)}
-                  </div>
-                  <p className="text-white/80 mb-6 italic leading-relaxed">"{t.content}"</p>
-                  <div className="flex items-center">
-                    <div className="w-10 h-10 bg-white/10 rounded-full mr-3 flex items-center justify-center font-serif text-primary">
-                      {t.name[0]}
-                    </div>
-                    <div>
-                      <h5 className="font-bold text-sm">{t.name}</h5>
-                      <span className="text-xs text-white/50">{t.role}</span>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Key Benefits Preview */}
-      <section className="py-24 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="font-serif text-4xl font-bold mb-4">Why Choose Luxe Estates?</h2>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">Experience unparalleled luxury with our premium offerings</p>
-          </div>
-          <KeyBenefitsSection />
-        </div>
-      </section>
-
-      {/* Professional Additions */}
-      <section className="py-24 bg-white">
-        <div className="container mx-auto px-4">
-          <TrustCertificatesSection />
-          <TeamSection />
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-24 bg-white relative">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="font-serif text-4xl md:text-5xl font-bold mb-6">Ready to find your dream home?</h2>
-          <p className="text-muted-foreground text-lg mb-10 max-w-2xl mx-auto">
-            Schedule a private viewing of our properties or talk to our experts about your requirements.
-          </p>
-          <Link href="/contact">
-            <Button size="lg" className="bg-primary hover:bg-primary/90 text-white rounded-none px-10 py-6 text-lg">
-              Get in Touch
-            </Button>
-          </Link>
-        </div>
-      </section>
     </div>
   );
 }
