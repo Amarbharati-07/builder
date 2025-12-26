@@ -330,6 +330,308 @@
   @apply w-full font-bold text-[10px] uppercase h-9;
 }
 
+/* Project Detail Page Styles */
+.detail-page {
+  @apply flex flex-col;
+}
+
+.page-header {
+  @apply bg-white border-b;
+}
+
+.btn-back {
+  @apply flex items-center gap-2 mb-4;
+}
+
+.btn-icon-sm {
+  @apply w-4 h-4;
+}
+
+.section-hero {
+  @apply bg-white py-8 md:py-12;
+}
+
+.section-overview {
+  @apply bg-white py-12;
+}
+
+.overview-grid {
+  @apply grid grid-cols-1 lg:grid-cols-3 gap-8;
+}
+
+.overview-main {
+  @apply lg:col-span-2;
+}
+
+.overview-header {
+  @apply flex flex-col gap-4 mb-8;
+}
+
+.badge-group {
+  @apply flex items-start gap-4 flex-wrap;
+}
+
+.overview-title {
+  @apply font-serif text-3xl md:text-5xl font-bold text-foreground;
+}
+
+.overview-description {
+  @apply prose prose-sm max-w-none mb-12;
+}
+
+.description-text {
+  @apply text-lg text-muted-foreground leading-relaxed;
+}
+
+.details-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 gap-8 mb-12 pb-12 border-b;
+}
+
+.detail-label {
+  @apply font-semibold text-foreground mb-2 text-sm uppercase tracking-widest;
+}
+
+.detail-value {
+  @apply text-lg text-foreground;
+}
+
+.detail-value-icon {
+  @apply text-lg text-foreground flex items-start gap-2;
+}
+
+.rera-info {
+  @apply flex items-center gap-4;
+}
+
+.rera-icon {
+  @apply w-4 h-4 text-green-500;
+}
+
+.rera-qr {
+  @apply w-12 h-12 border p-1 rounded bg-white shadow-sm;
+}
+
+.icon-primary {
+  @apply w-4 h-4 mt-1 flex-shrink-0 text-primary;
+}
+
+.section-pricing {
+  @apply mb-12;
+}
+
+.pricing-header {
+  @apply flex items-center gap-3 mb-6;
+}
+
+.pricing-icon-box {
+  @apply w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center;
+}
+
+.pricing-icon {
+  @apply w-5 h-5 text-primary;
+}
+
+.pricing-title {
+  @apply font-serif text-3xl font-bold text-foreground;
+}
+
+.table-wrapper {
+  @apply overflow-hidden rounded-xl border border-gray-200 shadow-sm;
+}
+
+.pricing-table {
+  @apply w-full border-collapse;
+}
+
+.table-head-row {
+  @apply bg-gray-50 text-left border-b border-gray-200;
+}
+
+.table-th {
+  @apply p-4 md:p-6 font-bold uppercase text-xs tracking-wider text-muted-foreground;
+}
+
+.table-th-empty {
+  @apply p-4 md:p-6 text-right;
+}
+
+.table-body-row {
+  @apply hover:bg-gray-50/50 transition-colors border-b border-gray-100 last:border-0;
+}
+
+.table-td-bold {
+  @apply p-4 md:p-6 font-bold text-foreground;
+}
+
+.table-td-muted {
+  @apply p-4 md:p-6 text-muted-foreground font-medium;
+}
+
+.table-td-price {
+  @apply p-4 md:p-6 font-black text-primary md:text-lg;
+}
+
+.table-td-action {
+  @apply p-4 md:p-6 text-right;
+}
+
+.btn-table {
+  @apply font-bold text-[10px] uppercase;
+}
+
+.pricing-note {
+  @apply mt-4 text-[10px] text-muted-foreground flex items-center gap-1.5 italic;
+}
+
+.note-icon {
+  @apply w-3 h-3;
+}
+
+.section-tower {
+  @apply mb-12;
+}
+
+.section-title {
+  @apply font-serif text-3xl font-bold mb-6 text-foreground;
+}
+
+.tower-grid {
+  @apply grid grid-cols-1 sm:grid-cols-2 gap-4;
+}
+
+.tower-item {
+  @apply p-4 border rounded-lg bg-gray-50;
+}
+
+.tower-name {
+  @apply font-bold text-lg mb-2;
+}
+
+.tower-stats {
+  @apply flex justify-between text-sm text-muted-foreground;
+}
+
+.section-plans {
+  @apply mb-12;
+}
+
+.plans-grid {
+  @apply grid grid-cols-1 sm:grid-cols-2 gap-6;
+}
+
+.plan-item {
+  @apply group relative aspect-video overflow-hidden rounded-lg border;
+}
+
+.plan-img {
+  @apply w-full h-full object-cover transition-transform group-hover:scale-105;
+}
+
+.plan-overlay {
+  @apply absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center;
+}
+
+.btn-view-plan {
+  @apply font-bold;
+}
+
+.section-walkthrough {
+  @apply mb-12;
+}
+
+.video-container {
+  @apply aspect-video rounded-lg overflow-hidden border bg-black shadow-xl;
+}
+
+.walkthrough-video {
+  @apply w-full h-full object-cover;
+}
+
+.overview-sidebar {
+  @apply lg:col-span-1;
+}
+
+.cta-sidebar {
+  @apply bg-primary text-white p-8 rounded-lg sticky top-24 shadow-2xl;
+}
+
+.sidebar-title {
+  @apply text-2xl font-bold mb-4;
+}
+
+.sidebar-text {
+  @apply text-white/90 mb-6;
+}
+
+.sidebar-actions {
+  @apply space-y-4;
+}
+
+.btn-sidebar-primary {
+  @apply w-full bg-white text-primary hover:bg-gray-100 font-bold;
+}
+
+.btn-sidebar-outline {
+  @apply w-full border-white text-white hover:bg-white/10 font-bold;
+}
+
+.btn-sidebar-ghost {
+  @apply w-full text-white hover:bg-white/10 mt-4 border border-white/30;
+}
+
+.section-amenities {
+  @apply bg-gray-50 py-16;
+}
+
+.section-title-large {
+  @apply font-serif text-4xl font-bold mb-12 text-foreground;
+}
+
+.section-connectivity {
+  @apply bg-white py-16;
+}
+
+.section-certificates {
+  @apply bg-gray-50 py-16;
+}
+
+.certificates-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6;
+}
+
+.certificate-item {
+  @apply bg-white p-6 rounded-lg border shadow-sm;
+}
+
+.certificate-icon {
+  @apply w-8 h-8 text-primary mb-3;
+}
+
+.certificate-text {
+  @apply font-semibold text-foreground;
+}
+
+/* Amenities Grid Styles */
+.amenities-grid {
+  @apply grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6;
+}
+
+.amenity-item {
+  @apply flex flex-col items-center text-center group;
+}
+
+.amenity-img-box {
+  @apply relative w-full aspect-square mb-3 overflow-hidden rounded-lg shadow-md hover:shadow-lg transition-shadow;
+}
+
+.amenity-img {
+  @apply w-full h-full object-cover group-hover:scale-105 transition-transform duration-300;
+}
+
+.amenity-name {
+  @apply font-semibold text-sm text-foreground;
+}
+
 .text-gold {
   color: hsl(var(--primary));
 }

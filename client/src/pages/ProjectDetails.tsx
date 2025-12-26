@@ -33,13 +33,13 @@ export default function ProjectDetail() {
   };
 
   return (
-    <div className="project-detail flex flex-col">
+    <div className="detail-page">
       {/* Header with back button */}
-      <div className="detail-header bg-white border-b">
-        <div className="container mx-auto px-4 py-6">
+      <div className="page-header">
+        <div className="container">
           <Link href="/">
-            <Button variant="ghost" className="btn btn-back flex items-center gap-2 mb-4">
-              <ArrowLeft className="icon w-4 h-4" />
+            <Button variant="ghost" className="btn-back">
+              <ArrowLeft className="btn-icon-sm" />
               Back
             </Button>
           </Link>
@@ -47,8 +47,8 @@ export default function ProjectDetail() {
       </div>
 
       {/* Hero Section with Gallery */}
-      <section className="hero-gallery bg-white py-8 md:py-12">
-        <div className="container mx-auto px-4">
+      <section className="section-hero">
+        <div className="container">
           <ProjectGallery
             images={project.images}
             videos={project.videos}
@@ -58,61 +58,61 @@ export default function ProjectDetail() {
       </section>
 
       {/* Project Overview */}
-      <section className="overview bg-white py-12">
-        <div className="container mx-auto px-4">
-          <div className="overview-grid grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <section className="section-overview">
+        <div className="container">
+          <div className="overview-grid">
             {/* Main Info */}
-            <div className="main-info lg:col-span-2">
-              <div className="title-box flex flex-col gap-4 mb-8">
-                <div className="badges flex items-start gap-4 flex-wrap">
-                  <Badge className={`status ${statusColors[project.status.toLowerCase()]} text-white text-xs uppercase`} data-testid={`badge-status-${project.status}`}>
+            <div className="overview-main">
+              <div className="overview-header">
+                <div className="badge-group">
+                  <Badge className={`badge-status ${project.status.toLowerCase()}`} data-testid={`badge-status-${project.status}`}>
                     {project.status}
                   </Badge>
-                  <Badge variant="outline" className="type-badge" data-testid={`badge-type-${project.type}`}>
+                  <Badge variant="outline" className="badge-type" data-testid={`badge-type-${project.type}`}>
                     {project.type}
                   </Badge>
                 </div>
-                <h1 className="project-title font-serif text-3xl md:text-5xl font-bold text-foreground" data-testid="text-project-title">
+                <h1 className="overview-title" data-testid="text-project-title">
                   {project.title}
                 </h1>
               </div>
 
-              <div className="description prose prose-sm max-w-none mb-12">
-                <p className="text-lg text-muted-foreground leading-relaxed" data-testid="text-project-description">
+              <div className="overview-description">
+                <p className="description-text" data-testid="text-project-description">
                   {project.description}
                 </p>
               </div>
 
               {/* Key Details Grid */}
-              <div className="details-grid grid grid-cols-1 md:grid-cols-2 gap-8 mb-12 pb-12 border-b">
+              <div className="details-grid">
                 <div className="detail-item">
-                  <h3 className="label font-semibold text-foreground mb-2 text-sm uppercase tracking-widest" data-testid="text-builder">
+                  <h3 className="detail-label" data-testid="text-builder">
                     Builder / Developer
                   </h3>
-                  <p className="value text-lg text-foreground">{project.builderName}</p>
+                  <p className="detail-value">{project.builderName}</p>
                 </div>
                 <div className="detail-item">
-                  <h3 className="label font-semibold text-foreground mb-2 text-sm uppercase tracking-widest">RERA ID</h3>
-                  <div className="rera-info flex items-center gap-4">
-                    <p className="value text-lg text-foreground flex items-center gap-2" data-testid="text-rera-id">
+                  <h3 className="detail-label">RERA ID</h3>
+                  <div className="rera-info">
+                    <p className="detail-value" data-testid="text-rera-id">
                       {project.reraId}
-                      <CheckCircle className="icon w-4 h-4 text-green-500" />
+                      <CheckCircle className="rera-icon" />
                     </p>
                     {project.reraQRCode && (
-                      <img src={project.reraQRCode} alt="RERA QR Code" className="qr-code w-12 h-12 border p-1 rounded bg-white shadow-sm" />
+                      <img src={project.reraQRCode} alt="RERA QR Code" className="rera-qr" />
                     )}
                   </div>
                 </div>
                 <div className="detail-item">
-                  <h3 className="label font-semibold text-foreground mb-2 text-sm uppercase tracking-widest">Possession Date</h3>
-                  <p className="value text-lg text-foreground" data-testid="text-possession-date">
+                  <h3 className="detail-label">Possession Date</h3>
+                  <p className="detail-value" data-testid="text-possession-date">
                     {project.possessionDate || "N/A"}
                   </p>
                 </div>
                 <div className="detail-item">
-                  <h3 className="label font-semibold text-foreground mb-2 text-sm uppercase tracking-widest">Address</h3>
-                  <p className="value text-lg text-foreground flex items-start gap-2" data-testid="text-address">
-                    <MapPin className="icon w-4 h-4 mt-1 flex-shrink-0 text-primary" />
+                  <h3 className="detail-label">Address</h3>
+                  <p className="detail-value-icon">
+                    <MapPin className="icon-primary" />
                     {project.address}
                   </p>
                 </div>
@@ -120,32 +120,32 @@ export default function ProjectDetail() {
 
               {/* Configuration & Pricing */}
               {project.configurations && project.configurations.length > 0 && (
-                <div className="pricing-section mb-12">
-                  <div className="section-header flex items-center gap-3 mb-6">
-                    <div className="icon-bg w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-                      <Zap className="icon w-5 h-5 text-primary" />
+                <div className="section-pricing">
+                  <div className="pricing-header">
+                    <div className="pricing-icon-box">
+                      <Zap className="pricing-icon" />
                     </div>
-                    <h2 className="section-title font-serif text-3xl font-bold text-foreground">Configuration & Pricing</h2>
+                    <h2 className="pricing-title">Configuration & Pricing</h2>
                   </div>
-                  <div className="pricing-table-wrapper overflow-hidden rounded-xl border border-gray-200 shadow-sm">
-                    <table className="pricing-table w-full border-collapse">
+                  <div className="table-wrapper">
+                    <table className="pricing-table">
                       <thead>
-                        <tr className="table-header bg-gray-50 text-left border-b border-gray-200">
-                          <th className="p-4 md:p-6 font-bold uppercase text-xs tracking-wider text-muted-foreground">Typology</th>
-                          <th className="p-4 md:p-6 font-bold uppercase text-xs tracking-wider text-muted-foreground">Carpet Area (sq.ft.)</th>
-                          <th className="p-4 md:p-6 font-bold uppercase text-xs tracking-wider text-muted-foreground">Price</th>
-                          <th className="p-4 md:p-6 text-right"></th>
+                        <tr className="table-head-row">
+                          <th className="table-th">Typology</th>
+                          <th className="table-th">Carpet Area (sq.ft.)</th>
+                          <th className="table-th">Price</th>
+                          <th className="table-th-empty"></th>
                         </tr>
                       </thead>
                       <tbody>
                         {project.configurations.map((config, idx) => (
-                          <tr key={idx} className="table-row hover:bg-gray-50/50 transition-colors border-b border-gray-100 last:border-0">
-                            <td className="p-4 md:p-6 font-bold text-foreground">{config.type}</td>
-                            <td className="p-4 md:p-6 text-muted-foreground font-medium">{config.carpetAreaRange} sq.ft.</td>
-                            <td className="p-4 md:p-6 font-black text-primary md:text-lg">{config.priceRange}</td>
-                            <td className="p-4 md:p-6 text-right">
+                          <tr key={idx} className="table-body-row">
+                            <td className="table-td-bold">{config.type}</td>
+                            <td className="table-td-muted">{config.carpetAreaRange} sq.ft.</td>
+                            <td className="table-td-price">{config.priceRange}</td>
+                            <td className="table-td-action">
                               <Link href="/contact">
-                                <Button size="sm" variant="outline" className="btn btn-outline font-bold text-[10px] uppercase">Details</Button>
+                                <Button size="sm" variant="outline" className="btn-table">Details</Button>
                               </Link>
                             </td>
                           </tr>
@@ -153,8 +153,8 @@ export default function ProjectDetail() {
                       </tbody>
                     </table>
                   </div>
-                  <p className="note mt-4 text-[10px] text-muted-foreground flex items-center gap-1.5 italic">
-                    <Info className="icon w-3 h-3" />
+                  <p className="pricing-note">
+                    <Info className="note-icon" />
                     * Pricing is calculated based on current market trends and base rate. Govt. taxes extra.
                   </p>
                 </div>
@@ -162,13 +162,13 @@ export default function ProjectDetail() {
 
               {/* Tower Details */}
               {project.towerDetails && project.towerDetails.length > 0 && (
-                <div className="tower-section mb-12">
-                  <h2 className="section-title font-serif text-3xl font-bold mb-6 text-foreground">Project Layout</h2>
-                  <div className="tower-grid grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="section-tower">
+                  <h2 className="section-title">Project Layout</h2>
+                  <div className="tower-grid">
                     {project.towerDetails.map((tower, idx) => (
-                      <div key={idx} className="tower-item p-4 border rounded-lg bg-gray-50">
-                        <h4 className="tower-name font-bold text-lg mb-2">{tower.name}</h4>
-                        <div className="tower-stats flex justify-between text-sm text-muted-foreground">
+                      <div key={idx} className="tower-item">
+                        <h4 className="tower-name">{tower.name}</h4>
+                        <div className="tower-stats">
                           <span>Floors: {tower.floors}</span>
                           <span>Total Units: {tower.units}</span>
                         </div>
@@ -180,18 +180,18 @@ export default function ProjectDetail() {
 
               {/* Floor Plans */}
               {project.floorPlans && project.floorPlans.length > 0 && (
-                <div className="plans-section mb-12">
-                  <h2 className="section-title font-serif text-3xl font-bold mb-6 text-foreground">Floor Plans</h2>
-                  <div className="plans-grid grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div className="section-plans">
+                  <h2 className="section-title">Floor Plans</h2>
+                  <div className="plans-grid">
                     {project.floorPlans.map((plan, idx) => (
-                      <div key={idx} className="plan-item group relative aspect-video overflow-hidden rounded-lg border">
+                      <div key={idx} className="plan-item">
                         <img 
                           src={plan} 
                           alt={`Floor Plan ${idx + 1}`} 
-                          className="plan-img w-full h-full object-cover transition-transform group-hover:scale-105"
+                          className="plan-img"
                         />
-                        <div className="plan-overlay absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                          <Button variant="secondary" size="sm" className="btn btn-secondary">View Plan</Button>
+                        <div className="plan-overlay">
+                          <Button variant="secondary" size="sm" className="btn-view-plan">View Plan</Button>
                         </div>
                       </div>
                     ))}
@@ -201,10 +201,10 @@ export default function ProjectDetail() {
 
               {/* Walkthrough Video */}
               {project.walkthroughVideo && (
-                <div className="walkthrough-section mb-12">
-                  <h2 className="section-title font-serif text-3xl font-bold mb-6 text-foreground">Project Walkthrough</h2>
-                  <div className="video-box aspect-video rounded-lg overflow-hidden border bg-black shadow-xl">
-                    <video controls className="video w-full h-full object-cover">
+                <div className="section-walkthrough">
+                  <h2 className="section-title">Project Walkthrough</h2>
+                  <div className="video-container">
+                    <video controls className="walkthrough-video">
                       <source src={project.walkthroughVideo} type="video/mp4" />
                     </video>
                   </div>
@@ -213,22 +213,22 @@ export default function ProjectDetail() {
             </div>
 
             {/* Sidebar CTA */}
-            <div className="sidebar lg:col-span-1">
-              <div className="cta-box bg-primary text-white p-8 rounded-lg sticky top-24 shadow-2xl">
-                <h3 className="cta-title text-2xl font-bold mb-4">Interested in this property?</h3>
-                <p className="cta-text text-white/90 mb-6">Connect with our property specialists to learn more about early bird offers.</p>
-                <div className="cta-actions space-y-4">
+            <div className="overview-sidebar">
+              <div className="cta-sidebar">
+                <h3 className="sidebar-title">Interested in this property?</h3>
+                <p className="sidebar-text">Connect with our property specialists to learn more about early bird offers.</p>
+                <div className="sidebar-actions">
                   <Link href="/contact">
-                    <Button size="lg" className="btn btn-white w-full bg-white text-primary hover:bg-gray-100 font-bold">
+                    <Button size="lg" className="btn-sidebar-primary">
                       Enquire Now
                     </Button>
                   </Link>
-                  <Button variant="outline" size="lg" className="btn btn-outline-white w-full border-white text-white hover:bg-white/10 font-bold">
+                  <Button variant="outline" size="lg" className="btn-sidebar-outline">
                     Call Now: +91 999 000 0000
                   </Button>
                   {project.brochure && (
                     <a href={project.brochure} target="_blank" rel="noopener noreferrer">
-                      <Button variant="ghost" size="lg" className="btn btn-ghost-white w-full text-white hover:bg-white/10 mt-4 border border-white/30">
+                      <Button variant="ghost" size="lg" className="btn-sidebar-ghost">
                         Download Brochure
                       </Button>
                     </a>
@@ -241,31 +241,31 @@ export default function ProjectDetail() {
       </section>
 
       {/* Amenities Section */}
-      <section className="amenities bg-gray-50 py-16">
-        <div className="container mx-auto px-4">
-          <h2 className="section-title font-serif text-4xl font-bold mb-12 text-foreground">Amenities & Facilities</h2>
+      <section className="section-amenities">
+        <div className="container">
+          <h2 className="section-title-large">Amenities & Facilities</h2>
           <AmenitiesGrid amenities={project.amenities} />
         </div>
       </section>
 
       {/* Connectivity Section */}
-      <section className="connectivity bg-white py-16">
-        <div className="container mx-auto px-4">
-          <h2 className="section-title font-serif text-4xl font-bold mb-12 text-foreground">Nearby Connectivity</h2>
+      <section className="section-connectivity">
+        <div className="container">
+          <h2 className="section-title-large">Nearby Connectivity</h2>
           <ConnectivitySection connectivity={project.connectivity} />
         </div>
       </section>
 
       {/* Certificates Section */}
       {project.certificates && project.certificates.length > 0 && (
-        <section className="certificates bg-gray-50 py-16">
-          <div className="container mx-auto px-4">
-            <h2 className="section-title font-serif text-4xl font-bold mb-12 text-foreground">Certifications & Awards</h2>
-            <div className="certificates-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <section className="section-certificates">
+          <div className="container">
+            <h2 className="section-title-large">Certifications & Awards</h2>
+            <div className="certificates-grid">
               {project.certificates.map((cert, index) => (
-                <div key={index} className="certificate-item bg-white p-6 rounded-lg border shadow-sm" data-testid={`card-certificate-${index}`}>
-                  <CheckCircle className="icon w-8 h-8 text-primary mb-3" />
-                  <p className="certificate-name font-semibold text-foreground">{cert}</p>
+                <div key={index} className="certificate-item" data-testid={`card-certificate-${index}`}>
+                  <CheckCircle className="certificate-icon" />
+                  <p className="certificate-text">{cert}</p>
                 </div>
               ))}
             </div>
