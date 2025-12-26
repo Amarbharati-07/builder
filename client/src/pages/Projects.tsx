@@ -2,12 +2,14 @@ import { useState } from "react";
 import { useProjects } from "@/hooks/use-projects";
 import { motion, AnimatePresence } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
-import { MapPin, Building2, DollarSign, QrCode, X, Check, Eye, Download, Grid3x3, Image as ImageIcon, Clock, CheckCircle, Zap } from "lucide-react";
+import { MapPin, Building2, DollarSign, QrCode, X, Check, Eye, Download, Grid3x3, Image as ImageIcon, Clock, CheckCircle, Zap, ChevronDown } from "lucide-react";
 import type { Project } from "@shared/schema";
 
 export default function Projects() {
   const { data: projects, isLoading } = useProjects();
   const [selectedType, setSelectedType] = useState("all");
+  const [selectedStatus, setSelectedStatus] = useState("all");
+  const [isStatusDropdownOpen, setIsStatusDropdownOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   // Group projects by status
@@ -44,8 +46,72 @@ export default function Projects() {
         </div>
       </div>
 
-      {/* Category Filters */}
+      {/* Filters Section */}
       <div className="container mx-auto px-4 mb-16">
+        {/* Status Filter Dropdown */}
+        <div className="flex flex-col md:flex-row items-center justify-center gap-6 mb-8">
+          <div className="relative w-full md:w-auto">
+            <button
+              onClick={() => setIsStatusDropdownOpen(!isStatusDropdownOpen)}
+              data-testid="button-status-filter"
+              className="w-full md:w-64 px-6 py-2.5 rounded-lg font-semibold border-2 border-amber-600 bg-white text-gray-900 hover:bg-amber-50 transition flex items-center justify-between"
+            >
+              <span>
+                {selectedStatus === "all"
+                  ? "All Projects"
+                  : selectedStatus === "ongoing"
+                  ? "Ongoing Projects"
+                  : selectedStatus === "completed"
+                  ? "Completed Projects"
+                  : "Upcoming Projects"}
+              </span>
+              <ChevronDown
+                className={`w-5 h-5 transition-transform ${
+                  isStatusDropdownOpen ? "rotate-180" : ""
+                }`}
+              />
+            </button>
+
+            {/* Dropdown Menu */}
+            <AnimatePresence>
+              {isStatusDropdownOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.2 }}
+                  className="absolute top-full left-0 right-0 mt-2 bg-white border-2 border-amber-600 rounded-lg shadow-lg z-50 w-full md:w-64"
+                  data-testid="dropdown-status-menu"
+                >
+                  {[
+                    { value: "all", label: "All Projects" },
+                    { value: "ongoing", label: "Ongoing Projects" },
+                    { value: "completed", label: "Completed Projects" },
+                    { value: "upcoming", label: "Upcoming Projects" },
+                  ].map((status) => (
+                    <button
+                      key={status.value}
+                      onClick={() => {
+                        setSelectedStatus(status.value);
+                        setIsStatusDropdownOpen(false);
+                      }}
+                      data-testid={`option-status-${status.value}`}
+                      className={`w-full text-left px-6 py-3 font-semibold transition ${
+                        selectedStatus === status.value
+                          ? "bg-amber-600 text-white"
+                          : "text-gray-900 hover:bg-amber-50"
+                      }`}
+                    >
+                      {status.label}
+                    </button>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        </div>
+
+        {/* Type Filters */}
         <div className="flex justify-center gap-4 flex-wrap">
           {[
             { value: "all", label: "All Projects" },
@@ -82,6 +148,7 @@ export default function Projects() {
         ) : (
           <div className="space-y-24">
             {/* ONGOING PROJECTS SECTION */}
+            {(selectedStatus === "all" || selectedStatus === "ongoing") && (
             <section data-testid="section-ongoing-projects">
               <div className="mb-12">
                 <div className="flex items-center gap-3 mb-3">
@@ -182,8 +249,10 @@ export default function Projects() {
                 </div>
               )}
             </section>
+            )}
 
             {/* COMPLETED PROJECTS SECTION */}
+            {(selectedStatus === "all" || selectedStatus === "completed") && (
             <section data-testid="section-completed-projects">
               <div className="mb-12">
                 <div className="flex items-center gap-3 mb-3">
@@ -283,8 +352,10 @@ export default function Projects() {
                 </div>
               )}
             </section>
+            )}
 
             {/* UPCOMING PROJECTS SECTION */}
+            {(selectedStatus === "all" || selectedStatus === "upcoming") && (
             <section data-testid="section-upcoming-projects">
               <div className="mb-12">
                 <div className="flex items-center gap-3 mb-3">
@@ -384,6 +455,7 @@ export default function Projects() {
                 </div>
               )}
             </section>
+            )}
           </div>
         )}
       </div>
