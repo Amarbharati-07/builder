@@ -153,6 +153,7 @@
 }
 
 /* Projects Grid - Same as Projects Page */
+/* Projects Grid - Matches Projects Page (shared via ProjectCard component) */
 .projects-grid {
   @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-12;
 }
