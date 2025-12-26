@@ -4,29 +4,26 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { MapPin, Building2, DollarSign, QrCode, X, Check, Eye, Download, Grid3x3, Image as ImageIcon, Clock, CheckCircle, Zap } from "lucide-react";
 import type { Project } from "@shared/schema";
+import "@/styles/filter-bar.css";
 
 export default function Projects() {
   const { data: projects, isLoading } = useProjects();
-  const [selectedType, setSelectedType] = useState("all");
-  const [selectedStatus, setSelectedStatus] = useState("all");
+  const [activeFilter, setActiveFilter] = useState("all");
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
-  // Group projects by status
-  const groupedProjects = {
-    ongoing: projects?.filter(p => p.status === "ongoing") ?? [],
-    completed: projects?.filter(p => p.status === "completed") ?? [],
-    upcoming: projects?.filter(p => p.status === "upcoming") ?? [],
+  // Get filtered projects based on active filter
+  const getFilteredProjects = () => {
+    if (!projects) return [];
+    if (activeFilter === "all") return projects;
+    if (activeFilter === "residential") return projects.filter(p => p.type.toLowerCase() === "residential");
+    if (activeFilter === "commercial") return projects.filter(p => p.type.toLowerCase() === "commercial");
+    if (activeFilter === "completed") return projects.filter(p => p.status === "completed");
+    if (activeFilter === "ongoing") return projects.filter(p => p.status === "ongoing");
+    if (activeFilter === "upcoming") return projects.filter(p => p.status === "upcoming");
+    return projects;
   };
 
-  // Filter by type within each status group
-  const filterByType = (statusProjects: Project[]) => {
-    if (selectedType === "all") return statusProjects;
-    return statusProjects.filter(p => p.type.toLowerCase() === selectedType.toLowerCase());
-  };
-
-  const ongoingFiltered = filterByType(groupedProjects.ongoing);
-  const completedFiltered = filterByType(groupedProjects.completed);
-  const upcomingFiltered = filterByType(groupedProjects.upcoming);
+  const filteredProjects = getFilteredProjects();
 
   const amenities = selectedProject?.amenities;
   const images = selectedProject?.images as string[] | undefined;
@@ -45,55 +42,30 @@ export default function Projects() {
         </div>
       </div>
 
-      {/* Filters Section */}
-      <div className="container mx-auto px-4 mb-16">
-        {/* Status Filter Buttons */}
-        <div className="flex justify-center gap-4 flex-wrap mb-8">
-          {[
-            { value: "all", label: "All Projects" },
-            { value: "ongoing", label: "Ongoing Projects" },
-            { value: "completed", label: "Completed Projects" },
-            { value: "upcoming", label: "Upcoming Projects" },
-          ].map((status) => (
-            <button
-              key={status.value}
-              onClick={() => setSelectedStatus(status.value)}
-              data-testid={`button-status-${status.value}`}
-              className={`px-8 py-3 rounded-xl font-semibold transition ${
-                selectedStatus === status.value
-                  ? "bg-yellow-600 text-white"
-                  : "bg-white border-2 border-black text-gray-900 hover:bg-gray-50"
-              }`}
-            >
-              {status.label}
-            </button>
-          ))}
-        </div>
-
-        {/* Type Filters */}
-        <div className="flex justify-center gap-4 flex-wrap">
+      {/* Unified Filter Bar */}
+      <div className="filter-bar-container">
+        <div className="filter-bar-wrapper">
           {[
             { value: "all", label: "All Projects" },
             { value: "residential", label: "Residential" },
             { value: "commercial", label: "Commercial" },
-          ].map((cat) => (
+            { value: "completed", label: "Completed Projects" },
+            { value: "ongoing", label: "Ongoing Projects" },
+            { value: "upcoming", label: "Upcoming Projects" },
+          ].map((filter) => (
             <button
-              key={cat.value}
-              onClick={() => setSelectedType(cat.value)}
-              data-testid={`button-category-${cat.value}`}
-              className={`px-8 py-3 rounded-xl font-semibold transition ${
-                selectedType === cat.value
-                  ? "bg-orange-600 text-white"
-                  : "bg-white border-2 border-gray-300 text-gray-700 hover:border-gray-400"
-              }`}
+              key={filter.value}
+              onClick={() => setActiveFilter(filter.value)}
+              data-testid={`button-filter-${filter.value}`}
+              className={`filter-button ${activeFilter === filter.value ? "active" : ""}`}
             >
-              {cat.label}
+              {filter.label}
             </button>
           ))}
         </div>
       </div>
 
-      {/* Projects Grid - Grouped by Status */}
+      {/* Projects Grid */}
       <div className="container mx-auto px-4 pb-24">
         {isLoading ? (
           <div className="space-y-8">
@@ -104,11 +76,18 @@ export default function Projects() {
               />
             ))}
           </div>
-        ) : (
-          <div className="space-y-24">
-            {/* ONGOING PROJECTS SECTION */}
-            {(selectedStatus === "all" || selectedStatus === "ongoing") && (
-            <section data-testid="section-ongoing-projects">
+        ) : filteredProjects.length > 0 ? (
+          <div className="space-y-8">
+            {filteredProjects.map((project, index) => (
+              <motion.div
+                key={project.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="group"
+              >
+                {/* Project Card */}
+                <div className="relative h-[400px] md:h-[550px] rounded-xl overflow-hidden shadow-2xl">
               <div className="mb-12">
                 <div className="flex items-center gap-3 mb-3">
                   <Clock className="w-7 h-7 text-blue-600" />
