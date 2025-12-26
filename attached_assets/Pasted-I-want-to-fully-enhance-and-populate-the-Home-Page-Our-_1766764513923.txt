@@ -1,0 +1,75 @@
+I want to fully enhance and populate the Home Page “Our Premium Projects” section with multiple real estate projects, displayed in a luxury, professional grid layout.
+
+On the HOME PAGE, show at least 4–5 Residential projects and 4–5 Commercial projects, clearly categorized and filterable (Residential / Commercial). Each project card must show complete, real-world builder-level details.
+
+For EACH PROJECT, include the following structured information and assets:
+
+Project name
+
+Project type (Residential or Commercial)
+
+Status (Ongoing / Upcoming / Completed)
+
+Full address (Kalyan, Maharashtra – Pincode 421306)
+
+Landmark-based nearby connectivity (Hospital, Metro station, Railway station, Bus stop, Highway access)
+
+Price range (₹ per sq. ft. or starting price)
+
+RERA registration number (unique for every project)
+
+Builder / Tower name
+
+Under each project, add a dedicated project detail section that includes:
+
+Multiple high-quality project images (tower view, elevation, interior, night view)
+
+Project videos (walkthrough / drone / promotional)
+
+Separate gallery for each project (images + videos)
+
+Add a complete Amenities section for every project, where EACH amenity has its OWN IMAGE and label, including but not limited to:
+
+Swimming Pool
+
+Gym
+
+Garden / Landscape
+
+Children Play Area
+
+Clubhouse
+
+Security / CCTV
+
+Parking
+
+Amenities should be displayed in a clean grid layout with icons/images and proper titles.
+
+Also include a Nearby Connectivity section per project showing distance and access to:
+
+Hospital
+
+Metro station
+
+Railway station
+
+Bus stop
+
+Market / School
+
+All projects must appear properly on the Home Page first, and clicking any project should open a detailed project page with all images, videos, amenities, RERA info, and location details.
+
+Ensure:
+
+Luxury real-estate UI design
+
+Fully responsive on mobile, tablet, and desktop
+
+Clean spacing, premium typography, and smooth hover effects
+
+Each project is visually rich and well-structured
+
+No placeholder-looking content
+
+The Home Page must look like a top-tier real estate developer website, with complete project visibility, not minimal cards.
