@@ -59,10 +59,10 @@ export default function Projects() {
               key={status.value}
               onClick={() => setSelectedStatus(status.value)}
               data-testid={`button-status-${status.value}`}
-              className={`px-6 py-2.5 rounded-lg font-semibold transition ${
+              className={`px-8 py-3 rounded-xl font-semibold transition ${
                 selectedStatus === status.value
                   ? "bg-amber-600 text-white"
-                  : "border-2 border-amber-600 text-gray-900 hover:bg-amber-50"
+                  : "bg-white border-2 border-black text-gray-900 hover:bg-gray-50"
               }`}
             >
               {status.label}
