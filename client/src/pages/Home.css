@@ -1,12 +1,178 @@
-.hero-section {
-  @apply relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden;
+.hero {
+  @apply relative min-h-screen flex items-center justify-center overflow-hidden;
+}
+
+.hero-bg {
+  @apply absolute inset-0 z-0;
+}
+
+.hero-video {
+  @apply w-full h-full object-cover;
 }
 
 .hero-overlay {
-  @apply absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/80;
+  @apply absolute inset-0 bg-black/40 bg-gradient-to-b from-black/60 via-black/20 to-black/60;
 }
 
-.text-gradient-gold {
+.hero-content {
+  @apply container relative z-10 px-4 text-center text-white;
+}
+
+.hero-subtitle {
+  @apply block font-sans text-sm md:text-base tracking-[0.2em] uppercase mb-4 text-primary font-medium;
+}
+
+.hero-title {
+  @apply font-serif text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight;
+}
+
+.hero-desc {
+  @apply max-w-2xl mx-auto text-lg md:text-xl text-white/80 mb-10 font-light leading-relaxed;
+}
+
+.hero-btns {
+  @apply flex flex-col sm:flex-row gap-4 justify-center;
+}
+
+.btn-explore {
+  @apply rounded-none bg-primary hover:bg-primary/90 text-white px-8 py-6 text-lg;
+}
+
+.btn-contact {
+  @apply rounded-none border-white text-white hover:bg-white hover:text-black px-8 py-6 text-lg;
+}
+
+.hero-scroll {
+  @apply absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce text-white/50;
+}
+
+.scroll-line {
+  @apply w-px h-16 bg-gradient-to-b from-transparent via-white/50 to-transparent mx-auto mb-2;
+}
+
+.scroll-text {
+  @apply text-xs uppercase tracking-widest;
+}
+
+/* About Section */
+.about {
+  @apply py-16 md:py-24 bg-white;
+}
+
+.about-grid {
+  @apply grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16 items-center;
+}
+
+.about-visual {
+  @apply relative order-2 lg:order-1;
+}
+
+.about-accent {
+  @apply absolute -top-6 -left-6 md:-top-10 md:-left-10 w-24 h-24 md:w-40 md:h-40 bg-gray-100 rounded-full z-0;
+}
+
+.about-img {
+  @apply relative z-10 rounded-sm shadow-2xl w-full max-w-md mx-auto lg:mx-0;
+}
+
+.about-badge {
+  @apply absolute -bottom-6 -right-6 md:-bottom-10 md:-right-10 w-full max-w-[160px] md:max-w-[200px] bg-primary p-4 md:p-6 text-white hidden sm:block shadow-lg z-20;
+}
+
+.badge-number {
+  @apply block text-3xl md:text-4xl font-serif font-bold mb-1;
+}
+
+.badge-text {
+  @apply text-xs md:text-sm font-medium opacity-90;
+}
+
+.about-info {
+  @apply order-1 lg:order-2;
+}
+
+.about-title {
+  @apply font-serif text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-foreground;
+}
+
+.about-desc {
+  @apply text-muted-foreground text-base md:text-lg leading-relaxed mb-8;
+}
+
+.stats-grid {
+  @apply grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8 mb-8;
+}
+
+.stat-item {
+  @apply flex flex-col;
+}
+
+.stat-icon {
+  @apply w-8 h-8 md:w-10 md:h-10 text-primary mb-3;
+}
+
+.stat-title {
+  @apply font-bold text-lg md:text-xl mb-1;
+}
+
+.stat-desc {
+  @apply text-xs md:text-sm text-muted-foreground;
+}
+
+.btn-story {
+  @apply text-primary p-0 h-auto font-semibold text-base md:text-lg hover:text-primary/80;
+}
+
+.btn-icon {
+  @apply ml-2 w-4 h-4 md:w-5 md:h-5;
+}
+
+/* Featured Projects Section */
+.featured-projects {
+  @apply py-16 md:py-24 bg-white;
+}
+
+.section-header {
+  @apply flex flex-col md:flex-row justify-between items-start md:items-end mb-12 md:mb-16;
+}
+
+.section-label {
+  @apply text-primary font-medium tracking-widest uppercase text-sm block mb-2;
+}
+
+.section-title {
+  @apply font-serif text-3xl md:text-5xl font-bold text-foreground;
+}
+
+.btn-view-all {
+  @apply hidden md:flex border-foreground hover:bg-foreground hover:text-white transition-colors;
+}
+
+.projects-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-12;
+}
+
+.skeleton-card {
+  @apply h-[400px] md:h-[500px] bg-gray-200 animate-pulse rounded-lg;
+}
+
+.empty-state {
+  @apply text-center py-12;
+}
+
+.empty-text {
+  @apply text-muted-foreground text-lg;
+}
+
+.mobile-view-btn {
+  @apply flex justify-center md:hidden;
+}
+
+.btn-view-all-mobile {
+  @apply w-full border-foreground hover:bg-foreground hover:text-white transition-colors;
+}
+
+.text-gold {
   background: linear-gradient(135deg, #C5A059 0%, #E6C888 50%, #C5A059 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

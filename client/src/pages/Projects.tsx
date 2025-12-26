@@ -36,28 +36,28 @@ export default function Projects() {
   ];
 
   return (
-    <div className="min-h-screen bg-white pt-16">
+    <div className="page-projects">
       {/* Hero Section */}
-      <div className="bg-foreground text-white py-12 md:py-16 mb-8 md:mb-16">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="font-serif text-3xl md:text-5xl font-bold mb-4">
+      <div className="hero-simple">
+        <div className="container">
+          <h1 className="hero-title">
             Our Premium Projects
           </h1>
-          <p className="text-white/70 max-w-2xl mx-auto text-sm md:text-base">
+          <p className="hero-desc">
             Discover our collection of luxury residential and commercial developments across prime locations.
           </p>
         </div>
       </div>
 
-      {/* Unified Filter Bar */}
-      <nav className="filter-bar-container" aria-label="Project categories">
-        <div className="filter-bar-wrapper">
+      {/* Filter Bar */}
+      <nav className="filters" aria-label="Project categories">
+        <div className="filters-wrapper">
           {FILTER_OPTIONS.map((filter) => (
             <button
               key={filter.value}
               onClick={() => setActiveFilter(filter.value)}
               data-testid={`button-filter-${filter.value}`}
-              className={`filter-button ${activeFilter === filter.value ? "active" : ""}`}
+              className={`filter-btn ${activeFilter === filter.value ? "active" : ""}`}
             >
               {filter.label}
             </button>
@@ -66,89 +66,89 @@ export default function Projects() {
       </nav>
 
       {/* Projects Grid */}
-      <div className="container mx-auto px-4 pb-24">
+      <div className="container projects-container">
         {isLoading ? (
-          <div className="space-y-8">
+          <div className="projects-skeleton">
             {[1, 2, 3].map((i) => (
               <div
                 key={i}
-                className="h-[500px] md:h-[600px] bg-gray-200 animate-pulse rounded-lg"
+                className="skeleton-card"
               />
             ))}
           </div>
         ) : filteredProjects.length > 0 ? (
-          <div className="space-y-8">
+          <div className="projects-list">
             {filteredProjects.map((project, index) => (
               <motion.div
                 key={project.id}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="group"
+                className="project-item"
               >
                 {/* Project Card */}
-                <div className="relative h-[400px] md:h-[550px] rounded-xl overflow-hidden shadow-2xl">
+                <div className="project-card">
                   <img
                     src={project.coverImage}
                     alt={project.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                    className="project-img"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
-                  <div className="absolute inset-0 p-6 md:p-12 flex flex-col justify-between">
-                    <div className="flex gap-2 flex-wrap">
-                      <Badge className={`text-white border-none font-semibold ${project.status === "ongoing" ? "bg-blue-600" : project.status === "completed" ? "bg-green-600" : "bg-orange-600"}`} data-testid={`badge-status-${project.slug}`}>
+                  <div className="project-overlay" />
+                  <div className="project-content">
+                    <div className="project-badges">
+                      <Badge className={`status-badge ${project.status === "ongoing" ? "ongoing" : project.status === "completed" ? "completed" : "upcoming"}`} data-testid={`badge-status-${project.slug}`}>
                         {project.status.toUpperCase()}
                       </Badge>
-                      <Badge className="bg-white/20 text-white border border-white/30 font-semibold" data-testid={`badge-type-${project.slug}`}>
+                      <Badge className="type-badge" data-testid={`badge-type-${project.slug}`}>
                         {project.type}
                       </Badge>
                     </div>
-                    <div className="text-white space-y-4">
-                      <h2 className="font-serif text-3xl md:text-4xl font-bold leading-tight" data-testid={`text-title-${project.slug}`}>
+                    <div className="project-info">
+                      <h2 className="project-title" data-testid={`text-title-${project.slug}`}>
                         {project.title}
                       </h2>
-                      <div className="flex flex-col gap-2 text-white/90">
-                        <div className="flex items-start gap-2">
-                          <MapPin className="w-5 h-5 flex-shrink-0 mt-0.5" />
+                      <div className="project-loc">
+                        <div className="loc-item">
+                          <MapPin className="loc-icon" />
                           <div>
-                            <p className="font-medium" data-testid={`text-address-${project.slug}`}>{project.address}</p>
-                            <p className="text-sm text-white/70" data-testid={`text-landmark-${project.slug}`}>{project.landmark}</p>
+                            <p className="loc-address" data-testid={`text-address-${project.slug}`}>{project.address}</p>
+                            <p className="loc-landmark" data-testid={`text-landmark-${project.slug}`}>{project.landmark}</p>
                           </div>
                         </div>
                       </div>
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
-                        <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 rounded-lg bg-white/10 border border-white/20 flex items-center justify-center">
-                            <DollarSign className="w-5 h-5" />
+                      <div className="project-details">
+                        <div className="detail-item">
+                          <div className="detail-icon-box">
+                            <DollarSign className="detail-icon" />
                           </div>
                           <div>
-                            <p className="text-xs text-white/70 uppercase tracking-wider">Price</p>
-                            <p className="font-bold text-lg" data-testid={`text-price-${project.slug}`}>{project.pricePerSqft || project.price}</p>
+                            <p className="detail-label">Price</p>
+                            <p className="detail-value" data-testid={`text-price-${project.slug}`}>{project.pricePerSqft || project.price}</p>
                           </div>
                         </div>
-                        <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 rounded-lg bg-white/10 border border-white/20 flex items-center justify-center">
-                            <Building2 className="w-5 h-5" />
+                        <div className="detail-item">
+                          <div className="detail-icon-box">
+                            <Building2 className="detail-icon" />
                           </div>
                           <div>
-                            <p className="text-xs text-white/70 uppercase tracking-wider">RERA ID</p>
-                            <p className="font-bold text-lg" data-testid={`text-rera-${project.slug}`}>{project.reraId}</p>
+                            <p className="detail-label">RERA ID</p>
+                            <p className="detail-value" data-testid={`text-rera-${project.slug}`}>{project.reraId}</p>
                           </div>
                         </div>
-                        <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 rounded-lg bg-white/10 border border-white/20 flex items-center justify-center">
-                            <QrCode className="w-5 h-5" />
+                        <div className="detail-item">
+                          <div className="detail-icon-box">
+                            <QrCode className="detail-icon" />
                           </div>
                           <div>
-                            <p className="text-xs text-white/70 uppercase tracking-wider">RERA Verified</p>
-                            <p className="font-bold text-sm">Scan QR Code</p>
+                            <p className="detail-label">RERA Verified</p>
+                            <p className="detail-value">Scan QR Code</p>
                           </div>
                         </div>
                       </div>
                       <Link
                         href={`/projects/${project.slug}`}
                         data-testid={`link-know-more-${project.slug}`}
-                        className="mt-6 px-8 py-3 bg-amber-600 hover:bg-amber-700 text-white font-bold rounded-lg transition transform hover:scale-105 inline-block text-center"
+                        className="btn-more"
                       >
                         Know More
                       </Link>
@@ -159,11 +159,12 @@ export default function Projects() {
             ))}
           </div>
         ) : (
-          <div className="text-center py-16 text-gray-500 bg-gray-50 rounded-lg">
-            <p className="text-lg">No projects match the selected filters.</p>
+          <div className="empty-state">
+            <p className="empty-text">No projects match the selected filters.</p>
           </div>
         )}
       </div>
+    </div>
     </div>
   );
 }

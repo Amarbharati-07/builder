@@ -28,15 +28,15 @@ export function LeadForm({ projectId, className }: { projectId?: number, classNa
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className={`space-y-4 ${className}`}>
+      <form onSubmit={form.handleSubmit(onSubmit)} className={`form-lead ${className}`}>
         <FormField
           control={form.control}
           name="name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-foreground/80">Full Name</FormLabel>
+              <FormLabel className="form-label">Full Name</FormLabel>
               <FormControl>
-                <Input placeholder="John Doe" {...field} className="bg-white/50 border-gray-300 focus:border-primary" />
+                <Input placeholder="John Doe" {...field} className="form-input" />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -47,9 +47,9 @@ export function LeadForm({ projectId, className }: { projectId?: number, classNa
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-foreground/80">Email Address</FormLabel>
+              <FormLabel className="form-label">Email Address</FormLabel>
               <FormControl>
-                <Input placeholder="john@example.com" type="email" {...field} className="bg-white/50 border-gray-300 focus:border-primary" />
+                <Input placeholder="john@example.com" type="email" {...field} className="form-input" />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -60,9 +60,9 @@ export function LeadForm({ projectId, className }: { projectId?: number, classNa
           name="phone"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-foreground/80">Phone Number</FormLabel>
+              <FormLabel className="form-label">Phone Number</FormLabel>
               <FormControl>
-                <Input placeholder="+1 (555) 000-0000" {...field} className="bg-white/50 border-gray-300 focus:border-primary" />
+                <Input placeholder="+1 (555) 000-0000" {...field} className="form-input" />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -73,13 +73,13 @@ export function LeadForm({ projectId, className }: { projectId?: number, classNa
           name="message"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-foreground/80">Message</FormLabel>
+              <FormLabel className="form-label">Message</FormLabel>
               <FormControl>
                 <Textarea 
                   placeholder="I'm interested in..." 
                   {...field} 
                   rows={4}
-                  className="bg-white/50 border-gray-300 focus:border-primary" 
+                  className="form-textarea" 
                 />
               </FormControl>
               <FormMessage />
@@ -88,7 +88,7 @@ export function LeadForm({ projectId, className }: { projectId?: number, classNa
         />
         <Button 
           type="submit" 
-          className="w-full bg-primary text-white hover:bg-primary/90 py-6 text-lg font-medium"
+          className="btn-submit"
           disabled={mutation.isPending}
         >
           {mutation.isPending ? "Submitting..." : "Send Enquiry"}

@@ -1,4 +1,4 @@
-.filter-bar-container {
+.filters {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -14,11 +14,11 @@
   scrollbar-width: none;  /* Firefox */
 }
 
-.filter-bar-container::-webkit-scrollbar {
+.filters::-webkit-scrollbar {
   display: none;
 }
 
-.filter-bar-wrapper {
+.filters-wrapper {
   display: flex;
   gap: 1.5rem;
   flex-wrap: nowrap;
@@ -27,7 +27,7 @@
   min-width: max-content;
 }
 
-.filter-button {
+.filter-btn {
   padding: 0.75rem 2rem;
   border-radius: 0.5rem;
   font-weight: 600;
@@ -45,12 +45,12 @@
   justify-content: center;
 }
 
-.filter-button:hover {
+.filter-btn:hover {
   background-color: #f3f4f6;
   border-color: #111827;
 }
 
-.filter-button.active {
+.filter-btn.active {
   background-color: #b8860b; /* Gold */
   color: #ffffff;
   border-color: #b8860b;
@@ -58,11 +58,11 @@
 
 /* Tablet Breakpoint (640px - 1024px) */
 @media (min-width: 640px) and (max-width: 1024px) {
-  .filter-bar-wrapper {
+  .filters-wrapper {
     gap: 1rem;
   }
   
-  .filter-button {
+  .filter-btn {
     padding: 0.6rem 1.5rem;
     font-size: 0.9rem;
     height: 2.5rem;
@@ -71,20 +71,20 @@
 
 /* Mobile Breakpoint (< 640px) */
 @media (max-width: 639px) {
-  .filter-bar-container {
+  .filters {
     justify-content: flex-start;
     padding: 1rem 0;
     scroll-snap-type: x mandatory;
   }
   
-  .filter-bar-wrapper {
+  .filters-wrapper {
     gap: 0.75rem;
     padding: 0 1rem;
     margin: 0;
     min-width: max-content;
   }
   
-  .filter-button {
+  .filter-btn {
     padding: 0.5rem 1.25rem;
     font-size: 0.85rem;
     height: 2.25rem;
@@ -94,7 +94,7 @@
 
 /* Desktop and Large Screens (> 1024px) */
 @media (min-width: 1025px) {
-  .filter-bar-wrapper {
+  .filters-wrapper {
     justify-content: center;
     max-width: 1200px;
   }

@@ -71,6 +71,265 @@
   }
 }
 
+/* Form Elements */
+.form-lead {
+  @apply space-y-4;
+}
+
+.form-label {
+  @apply text-foreground/80;
+}
+
+.form-input {
+  @apply bg-white/50 border-gray-300 focus:border-primary;
+}
+
+.form-textarea {
+  @apply bg-white/50 border-gray-300 focus:border-primary;
+}
+
+.btn-submit {
+  @apply w-full bg-primary text-white hover:bg-primary/90 py-6 text-lg font-medium;
+}
+
+/* Footer Styling */
+.footer {
+  @apply bg-foreground text-white;
+}
+
+.footer-main {
+  @apply mx-auto px-4 py-16;
+}
+
+.footer-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12;
+}
+
+.footer-logo {
+  @apply font-serif text-2xl font-bold mb-4;
+}
+
+.footer-tagline {
+  @apply text-white/70 mb-6 text-sm leading-relaxed;
+}
+
+.social-links {
+  @apply flex gap-3;
+}
+
+.social-btn {
+  @apply w-10 h-10 bg-white/10 hover:bg-primary rounded-full flex items-center justify-center transition;
+}
+
+.social-icon {
+  @apply w-5 h-5;
+}
+
+.footer-heading {
+  @apply font-bold text-lg mb-6;
+}
+
+.link-list {
+  @apply space-y-3 text-sm;
+}
+
+.link-item {
+  @apply text-white/70 hover:text-white transition cursor-pointer;
+}
+
+.contact-list {
+  @apply space-y-4 text-sm;
+}
+
+.contact-item {
+  @apply flex items-center gap-3 text-white/70 hover:text-white transition;
+}
+
+.contact-icon-box {
+  @apply w-8 h-8 bg-white/10 rounded-full flex items-center justify-center transition group-hover:bg-primary;
+}
+
+.contact-icon {
+  @apply w-4 h-4;
+}
+
+.footer-extra {
+  @apply grid grid-cols-1 md:grid-cols-2 gap-8 mt-12 pt-12 border-t border-white/10;
+}
+
+.extra-heading {
+  @apply font-bold text-lg mb-4;
+}
+
+.extra-text {
+  @apply text-white/70 text-sm;
+}
+
+.footer-bottom {
+  @apply border-t border-white/10 py-6;
+}
+
+.bottom-content {
+  @apply mx-auto px-4 flex flex-col md:flex-row justify-between items-center text-sm text-white/60;
+}
+
+.bottom-links {
+  @apply flex gap-6 mt-4 md:mt-0;
+}
+
+.bottom-link {
+  @apply hover:text-white transition;
+}
+
+/* Project Card Styles */
+.card-wrapper {
+  @apply h-full;
+}
+
+.project-card {
+  @apply overflow-hidden border-none shadow-xl hover:shadow-2xl transition-all duration-500 h-full flex flex-col bg-white hover:-translate-y-2;
+}
+
+.card-visual {
+  @apply relative h-[240px] overflow-hidden bg-gray-100;
+}
+
+.card-img {
+  @apply w-full h-full object-cover transition-transform duration-700 group-hover:scale-105;
+}
+
+.card-badges {
+  @apply absolute top-4 left-4 flex gap-2;
+}
+
+.badge-status {
+  @apply hover:opacity-90 text-white backdrop-blur-sm border-none uppercase tracking-wider text-[10px] px-2 py-0.5 font-bold shadow-lg;
+}
+
+.badge-status.ongoing { @apply bg-blue-600; }
+.badge-status.completed { @apply bg-green-600; }
+.badge-status.upcoming { @apply bg-amber-600; }
+
+.badge-type {
+  @apply bg-white/90 text-foreground text-[10px] uppercase font-bold shadow-sm;
+}
+
+.card-overlay {
+  @apply absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors duration-500;
+}
+
+.card-info {
+  @apply p-5 flex-grow flex flex-col;
+}
+
+.info-header {
+  @apply flex justify-between items-start gap-2 mb-2;
+}
+
+.info-title {
+  @apply font-serif text-xl font-bold text-foreground group-hover:text-primary transition-colors duration-300 line-clamp-1;
+}
+
+.info-price {
+  @apply text-primary font-bold text-base whitespace-nowrap;
+}
+
+.info-loc {
+  @apply flex items-center text-muted-foreground mb-4 text-xs;
+}
+
+.loc-icon {
+  @apply w-3.5 h-3.5 mr-1.5 text-primary flex-shrink-0;
+}
+
+.loc-address {
+  @apply line-clamp-1;
+}
+
+.price-box {
+  @apply bg-gray-50 p-3 rounded-lg border border-gray-100 mb-4 space-y-2;
+}
+
+.bhk-item {
+  @apply flex justify-between items-center text-[11px] border-b border-gray-100 last:border-0 pb-1 last:pb-0;
+}
+
+.bhk-info {
+  @apply flex flex-col;
+}
+
+.bhk-type {
+  @apply font-bold text-foreground uppercase;
+}
+
+.bhk-area {
+  @apply text-[9px] text-muted-foreground;
+}
+
+.bhk-price {
+  @apply font-bold text-primary;
+}
+
+.no-config {
+  @apply text-[11px] text-muted-foreground py-1;
+}
+
+.rera-box {
+  @apply flex items-center justify-between mb-5;
+}
+
+.rera-id {
+  @apply flex items-center gap-1.5;
+}
+
+.rera-icon-box {
+  @apply w-6 h-6 rounded bg-primary/10 flex items-center justify-center;
+}
+
+.rera-icon {
+  @apply w-3.5 h-3.5 text-primary;
+}
+
+.rera-text {
+  @apply text-[10px] font-mono text-muted-foreground tracking-tight;
+}
+
+.rera-status {
+  @apply flex items-center gap-1 text-green-600 font-bold text-[10px] uppercase tracking-wider;
+}
+
+.status-dot {
+  @apply w-1.5 h-1.5 rounded-full bg-green-600 animate-pulse;
+}
+
+.card-actions {
+  @apply mt-auto space-y-2;
+}
+
+.btn-details {
+  @apply w-full font-bold text-xs uppercase tracking-widest py-5;
+}
+
+.btn-icon {
+  @apply w-3.5 h-3.5 ml-2 transition-transform;
+}
+
+.btn-group {
+  @apply grid grid-cols-2 gap-2;
+}
+
+.btn-call {
+  @apply font-bold text-[10px] uppercase h-9 border-primary/20 hover:bg-primary/5 text-primary;
+}
+
+.btn-icon-sm {
+  @apply mr-1.5 w-3 h-3;
+}
+
+.btn-enquire {
+  @apply w-full font-bold text-[10px] uppercase h-9;
+}
+
 .text-gold {
   color: hsl(var(--primary));
 }
