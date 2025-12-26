@@ -19,13 +19,13 @@ const FILTER_OPTIONS: { label: string; value: ProjectFilterType }[] = [
 
 export function ProjectFilter({ selectedType, onFilterChange }: ProjectFilterProps) {
   return (
-    <nav className="filter-bar-container" aria-label="Project categories">
-      <div className="filter-bar-wrapper">
+    <nav className="filters filters-nav" aria-label="Project categories">
+      <div className="filters-wrapper flex flex-wrap gap-2">
         {FILTER_OPTIONS.map((option) => (
           <button
             key={option.value}
             onClick={() => onFilterChange(option.value)}
-            className={`filter-button ${selectedType === option.value ? "active" : ""}`}
+            className={`filter-btn btn ${selectedType === option.value ? "active" : ""}`}
             data-testid={`button-filter-${option.value.toLowerCase()}`}
           >
             {option.label}

@@ -33,21 +33,21 @@ export function Layout({ children }: { children: React.ReactNode }) {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col font-sans text-foreground bg-background">
+    <div className="layout flex flex-col min-h-screen font-sans text-foreground bg-background">
       {/* Navigation */}
       <header
         className={cn(
-          "nav-header",
+          "navbar",
           isScrolled || location !== "/" 
-            ? "nav-header-scrolled" 
-            : "nav-header-transparent"
+            ? "navbar-scrolled" 
+            : "navbar-transparent"
         )}
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           <Link href="/">
-            <div className="cursor-pointer">
+            <div className="logo cursor-pointer">
               <span className={cn(
-                "font-serif text-2xl font-bold tracking-widest",
+                "logo-text font-serif text-2xl font-bold tracking-widest",
                 isScrolled || location !== "/" ? "text-primary" : "text-white"
               )}>
                 LUXE ESTATES
@@ -56,12 +56,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center space-x-8">
+          <nav className="nav-desktop hidden md:flex items-center space-x-8">
             {navLinks.map((link) => (
               <Link key={link.href} href={link.href}>
                 <span className={cn(
                   "nav-link",
-                  location === link.href && "text-primary",
+                  location === link.href && "active",
                   !isScrolled && location === "/" && location !== link.href && "text-white/90 hover:text-white"
                 )}>
                   {link.label}
@@ -72,7 +72,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
               <Button 
                 variant={isScrolled || location !== "/" ? "default" : "outline"}
                 className={cn(
-                  "rounded-none px-6 mr-4",
+                  "btn btn-call rounded-none px-6 mr-4",
                   !isScrolled && location === "/" && "border-white text-white hover:bg-white hover:text-black hover:border-white"
                 )}
               >
@@ -83,7 +83,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
               <Button 
                 variant={isScrolled || location !== "/" ? "default" : "outline"}
                 className={cn(
-                  "rounded-none px-6",
+                  "btn btn-enquire rounded-none px-6",
                   !isScrolled && location === "/" && "border-white text-white hover:bg-white hover:text-black hover:border-white"
                 )}
               >
@@ -94,7 +94,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2"
+            className="btn-mobile md:hidden p-2"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? (
@@ -107,11 +107,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
         {/* Mobile Nav */}
         {isMobileMenuOpen && (
-          <div className="absolute top-full left-0 right-0 bg-background border-b border-border shadow-lg p-6 md:hidden flex flex-col space-y-4 animate-in slide-in-from-top-5">
+          <div className="nav-mobile absolute top-full left-0 right-0 bg-background border-b border-border shadow-lg p-6 md:hidden flex flex-col space-y-4 animate-in slide-in-from-top-5">
             {navLinks.map((link) => (
               <Link key={link.href} href={link.href}>
                 <span 
-                  className="block text-lg font-medium hover:text-primary cursor-pointer"
+                  className="nav-link-mobile block text-lg font-medium hover:text-primary cursor-pointer"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {link.label}
@@ -123,34 +123,34 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </header>
 
       {/* Main Content */}
-      <main className="flex-grow pt-0">
+      <main className="main-content flex-grow pt-0">
         {children}
       </main>
 
       {/* Footer */}
-      <footer className="footer-container">
+      <footer className="footer footer-container">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
-            <div>
-              <h3 className="font-serif text-2xl font-bold tracking-widest text-primary mb-6">LUXE ESTATES</h3>
-              <p className="text-white/60 text-sm leading-relaxed mb-6">
+          <div className="footer-grid grid grid-cols-1 md:grid-cols-4 gap-12">
+            <div className="footer-info">
+              <h3 className="footer-logo font-serif text-2xl font-bold tracking-widest text-primary mb-6">LUXE ESTATES</h3>
+              <p className="footer-text text-white/60 text-sm leading-relaxed mb-6">
                 Redefining luxury living with architectural masterpieces that stand the test of time. 
                 Experience the pinnacle of elegance and comfort.
               </p>
-              <div className="flex space-x-4">
-                <a href="#" className="text-white/60 hover:text-primary transition-colors"><Instagram size={20} /></a>
-                <a href="#" className="text-white/60 hover:text-primary transition-colors"><Facebook size={20} /></a>
-                <a href="#" className="text-white/60 hover:text-primary transition-colors"><Linkedin size={20} /></a>
+              <div className="social-links flex space-x-4">
+                <a href="#" className="social-link text-white/60 hover:text-primary transition-colors"><Instagram size={20} /></a>
+                <a href="#" className="social-link text-white/60 hover:text-primary transition-colors"><Facebook size={20} /></a>
+                <a href="#" className="social-link text-white/60 hover:text-primary transition-colors"><Linkedin size={20} /></a>
               </div>
             </div>
 
-            <div>
-              <h4 className="font-serif text-lg font-semibold mb-6">Quick Links</h4>
-              <ul className="space-y-3">
+            <div className="footer-links">
+              <h4 className="footer-title font-serif text-lg font-semibold mb-6">Quick Links</h4>
+              <ul className="links-list space-y-3">
                 {navLinks.map((link) => (
                   <li key={link.href}>
                     <Link href={link.href}>
-                      <span className="text-white/60 hover:text-primary transition-colors cursor-pointer text-sm">
+                      <span className="link text-white/60 hover:text-primary transition-colors cursor-pointer text-sm">
                         {link.label}
                       </span>
                     </Link>
@@ -159,43 +159,43 @@ export function Layout({ children }: { children: React.ReactNode }) {
               </ul>
             </div>
 
-            <div>
-              <h4 className="font-serif text-lg font-semibold mb-6">Contact Us</h4>
-              <ul className="space-y-4">
-                <li className="flex items-start space-x-3 text-white/60 text-sm">
-                  <MapPin className="w-5 h-5 text-primary shrink-0" />
+            <div className="footer-contact">
+              <h4 className="footer-title font-serif text-lg font-semibold mb-6">Contact Us</h4>
+              <ul className="contact-list space-y-4">
+                <li className="contact-item flex items-start space-x-3 text-white/60 text-sm">
+                  <MapPin className="icon w-5 h-5 text-primary shrink-0" />
                   <span>123 Luxury Lane, Golden Mile,<br />Beverly Hills, CA 90210</span>
                 </li>
-                <li className="flex items-center space-x-3 text-white/60 text-sm">
-                  <Phone className="w-5 h-5 text-primary shrink-0" />
+                <li className="contact-item flex items-center space-x-3 text-white/60 text-sm">
+                  <Phone className="icon w-5 h-5 text-primary shrink-0" />
                   <span>+1 (555) 123-4567</span>
                 </li>
-                <li className="flex items-center space-x-3 text-white/60 text-sm">
-                  <Mail className="w-5 h-5 text-primary shrink-0" />
+                <li className="contact-item flex items-center space-x-3 text-white/60 text-sm">
+                  <Mail className="icon w-5 h-5 text-primary shrink-0" />
                   <span>info@luxeestates.com</span>
                 </li>
               </ul>
             </div>
 
-            <div>
-              <h4 className="font-serif text-lg font-semibold mb-6">Newsletter</h4>
-              <p className="text-white/60 text-sm mb-4">Subscribe to receive updates on new launches.</p>
-              <div className="flex flex-col space-y-3">
+            <div className="footer-newsletter">
+              <h4 className="footer-title font-serif text-lg font-semibold mb-6">Newsletter</h4>
+              <p className="newsletter-text text-white/60 text-sm mb-4">Subscribe to receive updates on new launches.</p>
+              <div className="newsletter-form flex flex-col space-y-3">
                 <input 
                   type="email" 
                   placeholder="Your Email Address" 
-                  className="bg-white/5 border border-white/10 px-4 py-3 text-sm focus:outline-none focus:border-primary text-white transition-colors rounded-none"
+                  className="input bg-white/5 border border-white/10 px-4 py-3 text-sm focus:outline-none focus:border-primary text-white transition-colors rounded-none"
                 />
-                <Button className="w-full rounded-none bg-primary text-white hover:bg-primary/90">Subscribe</Button>
+                <Button className="btn btn-subscribe w-full rounded-none bg-primary text-white hover:bg-primary/90">Subscribe</Button>
               </div>
             </div>
           </div>
-          <div className="mt-16 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center text-xs text-white/40">
-            <p>&copy; 2024 Luxe Estates. All rights reserved.</p>
-            <div className="flex space-x-6 mt-4 md:mt-0">
-              <a href="#" className="hover:text-white">Privacy Policy</a>
-              <a href="#" className="hover:text-white">Terms of Service</a>
-              <a href="#" className="hover:text-white">Disclaimer</a>
+          <div className="footer-bottom mt-16 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center text-xs text-white/40">
+            <p className="copyright">&copy; 2024 Luxe Estates. All rights reserved.</p>
+            <div className="legal-links flex space-x-6 mt-4 md:mt-0">
+              <a href="#" className="legal-link hover:text-white">Privacy Policy</a>
+              <a href="#" className="legal-link hover:text-white">Terms of Service</a>
+              <a href="#" className="legal-link hover:text-white">Disclaimer</a>
             </div>
           </div>
         </div>
