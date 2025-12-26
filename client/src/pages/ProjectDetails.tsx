@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { ProjectGallery } from "@/components/ProjectGallery";
 import { AmenitiesGrid } from "@/components/AmenitiesGrid";
 import { ConnectivitySection } from "@/components/ConnectivitySection";
-import { ArrowLeft, MapPin, Home, CheckCircle } from "lucide-react";
+import { ArrowLeft, MapPin, Home, CheckCircle, Zap, Info } from "lucide-react";
 import { Link } from "wouter";
 
 export default function ProjectDetail() {
