@@ -46,10 +46,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           <Link href="/">
             <div className="logo cursor-pointer">
-              <span className={cn(
-                "logo-text font-serif text-2xl font-bold tracking-widest",
-                isScrolled || location !== "/" ? "text-primary" : "text-white"
-              )}>
+              <span className="logo-text font-serif text-2xl font-bold tracking-widest">
                 LUXE ESTATES
               </span>
             </div>
@@ -61,8 +58,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
               <Link key={link.href} href={link.href}>
                 <span className={cn(
                   "nav-link",
-                  location === link.href && "active",
-                  !isScrolled && location === "/" && location !== link.href && "text-white/90 hover:text-white"
+                  location === link.href && "active"
                 )}>
                   {link.label}
                 </span>
