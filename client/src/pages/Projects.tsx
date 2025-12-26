@@ -88,312 +88,79 @@ export default function Projects() {
               >
                 {/* Project Card */}
                 <div className="relative h-[400px] md:h-[550px] rounded-xl overflow-hidden shadow-2xl">
-              <div className="mb-12">
-                <div className="flex items-center gap-3 mb-3">
-                  <Clock className="w-7 h-7 text-blue-600" />
-                  <h2 className="font-serif text-3xl md:text-4xl font-bold text-gray-900">
-                    Ongoing Projects
-                  </h2>
-                </div>
-                <p className="text-gray-600 ml-10">Projects currently under construction</p>
-                <div className="h-1 w-24 bg-blue-600 mt-4 ml-10" />
-              </div>
-              
-              {ongoingFiltered.length > 0 ? (
-                <div className="space-y-8">
-                  {ongoingFiltered.map((project, index) => (
-                    <motion.div
-                      key={project.id}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.5, delay: index * 0.1 }}
-                      className="group"
-                    >
-                      {/* Project Card */}
-                      <div className="relative h-[400px] md:h-[550px] rounded-xl overflow-hidden shadow-2xl">
-                        <img
-                          src={project.coverImage}
-                          alt={project.title}
-                          className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
-                        <div className="absolute inset-0 p-6 md:p-12 flex flex-col justify-between">
-                          <div className="flex gap-2 flex-wrap">
-                            <Badge className="bg-blue-600 text-white border-none font-semibold" data-testid={`badge-status-${project.slug}`}>
-                              ONGOING
-                            </Badge>
-                            <Badge className="bg-white/20 text-white border border-white/30 font-semibold" data-testid={`badge-type-${project.slug}`}>
-                              {project.type}
-                            </Badge>
-                          </div>
-                          <div className="text-white space-y-4">
-                            <h2 className="font-serif text-3xl md:text-4xl font-bold leading-tight" data-testid={`text-title-${project.slug}`}>
-                              {project.title}
-                            </h2>
-                            <div className="flex flex-col gap-2 text-white/90">
-                              <div className="flex items-start gap-2">
-                                <MapPin className="w-5 h-5 flex-shrink-0 mt-0.5" />
-                                <div>
-                                  <p className="font-medium" data-testid={`text-address-${project.slug}`}>{project.address}</p>
-                                  <p className="text-sm text-white/70" data-testid={`text-landmark-${project.slug}`}>{project.landmark}</p>
-                                </div>
-                              </div>
-                            </div>
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
-                              <div className="flex items-center gap-3">
-                                <div className="w-10 h-10 rounded-lg bg-white/10 border border-white/20 flex items-center justify-center">
-                                  <DollarSign className="w-5 h-5" />
-                                </div>
-                                <div>
-                                  <p className="text-xs text-white/70 uppercase tracking-wider">Price per sq.ft</p>
-                                  <p className="font-bold text-lg" data-testid={`text-price-${project.slug}`}>{project.pricePerSqft}</p>
-                                </div>
-                              </div>
-                              <div className="flex items-center gap-3">
-                                <div className="w-10 h-10 rounded-lg bg-white/10 border border-white/20 flex items-center justify-center">
-                                  <Building2 className="w-5 h-5" />
-                                </div>
-                                <div>
-                                  <p className="text-xs text-white/70 uppercase tracking-wider">RERA ID</p>
-                                  <p className="font-bold text-lg" data-testid={`text-rera-${project.slug}`}>{project.reraId}</p>
-                                </div>
-                              </div>
-                              <div className="flex items-center gap-3">
-                                <div className="w-10 h-10 rounded-lg bg-white/10 border border-white/20 flex items-center justify-center">
-                                  <QrCode className="w-5 h-5" />
-                                </div>
-                                <div>
-                                  <p className="text-xs text-white/70 uppercase tracking-wider">RERA Verified</p>
-                                  <p className="font-bold text-sm">Scan QR Code</p>
-                                </div>
-                              </div>
-                            </div>
-                            <button
-                              onClick={() => setSelectedProject(project)}
-                              data-testid={`button-know-more-${project.slug}`}
-                              className="mt-6 px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg transition transform hover:scale-105 inline-block"
-                            >
-                              Know More
-                            </button>
+                  <img
+                    src={project.coverImage}
+                    alt={project.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+                  <div className="absolute inset-0 p-6 md:p-12 flex flex-col justify-between">
+                    <div className="flex gap-2 flex-wrap">
+                      <Badge className={`text-white border-none font-semibold ${project.status === "ongoing" ? "bg-blue-600" : project.status === "completed" ? "bg-green-600" : "bg-orange-600"}`} data-testid={`badge-status-${project.slug}`}>
+                        {project.status.toUpperCase()}
+                      </Badge>
+                      <Badge className="bg-white/20 text-white border border-white/30 font-semibold" data-testid={`badge-type-${project.slug}`}>
+                        {project.type}
+                      </Badge>
+                    </div>
+                    <div className="text-white space-y-4">
+                      <h2 className="font-serif text-3xl md:text-4xl font-bold leading-tight" data-testid={`text-title-${project.slug}`}>
+                        {project.title}
+                      </h2>
+                      <div className="flex flex-col gap-2 text-white/90">
+                        <div className="flex items-start gap-2">
+                          <MapPin className="w-5 h-5 flex-shrink-0 mt-0.5" />
+                          <div>
+                            <p className="font-medium" data-testid={`text-address-${project.slug}`}>{project.address}</p>
+                            <p className="text-sm text-white/70" data-testid={`text-landmark-${project.slug}`}>{project.landmark}</p>
                           </div>
                         </div>
                       </div>
-                    </motion.div>
-                  ))}
-                </div>
-              ) : (
-                <div className="text-center py-16 text-gray-500 bg-gray-50 rounded-lg">
-                  <p className="text-lg">No ongoing projects in this category.</p>
-                </div>
-              )}
-            </section>
-            )}
-
-            {/* COMPLETED PROJECTS SECTION */}
-            {(selectedStatus === "all" || selectedStatus === "completed") && (
-            <section data-testid="section-completed-projects">
-              <div className="mb-12">
-                <div className="flex items-center gap-3 mb-3">
-                  <CheckCircle className="w-7 h-7 text-green-600" />
-                  <h2 className="font-serif text-3xl md:text-4xl font-bold text-gray-900">
-                    Completed Projects
-                  </h2>
-                </div>
-                <p className="text-gray-600 ml-10">Successfully delivered projects</p>
-                <div className="h-1 w-24 bg-green-600 mt-4 ml-10" />
-              </div>
-
-              {completedFiltered.length > 0 ? (
-                <div className="space-y-8">
-                  {completedFiltered.map((project, index) => (
-                    <motion.div
-                      key={project.id}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.5, delay: index * 0.1 }}
-                      className="group"
-                    >
-                      <div className="relative h-[400px] md:h-[550px] rounded-xl overflow-hidden shadow-2xl">
-                        <img
-                          src={project.coverImage}
-                          alt={project.title}
-                          className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
-                        <div className="absolute inset-0 p-6 md:p-12 flex flex-col justify-between">
-                          <div className="flex gap-2 flex-wrap">
-                            <Badge className="bg-green-600 text-white border-none font-semibold" data-testid={`badge-status-${project.slug}`}>
-                              DELIVERED
-                            </Badge>
-                            <Badge className="bg-white/20 text-white border border-white/30 font-semibold" data-testid={`badge-type-${project.slug}`}>
-                              {project.type}
-                            </Badge>
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 rounded-lg bg-white/10 border border-white/20 flex items-center justify-center">
+                            <DollarSign className="w-5 h-5" />
                           </div>
-                          <div className="text-white space-y-4">
-                            <h2 className="font-serif text-3xl md:text-4xl font-bold leading-tight" data-testid={`text-title-${project.slug}`}>
-                              {project.title}
-                            </h2>
-                            <div className="flex flex-col gap-2 text-white/90">
-                              <div className="flex items-start gap-2">
-                                <MapPin className="w-5 h-5 flex-shrink-0 mt-0.5" />
-                                <div>
-                                  <p className="font-medium" data-testid={`text-address-${project.slug}`}>{project.address}</p>
-                                  <p className="text-sm text-white/70" data-testid={`text-landmark-${project.slug}`}>{project.landmark}</p>
-                                </div>
-                              </div>
-                            </div>
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
-                              <div className="flex items-center gap-3">
-                                <div className="w-10 h-10 rounded-lg bg-white/10 border border-white/20 flex items-center justify-center">
-                                  <DollarSign className="w-5 h-5" />
-                                </div>
-                                <div>
-                                  <p className="text-xs text-white/70 uppercase tracking-wider">Price per sq.ft</p>
-                                  <p className="font-bold text-lg" data-testid={`text-price-${project.slug}`}>{project.pricePerSqft}</p>
-                                </div>
-                              </div>
-                              <div className="flex items-center gap-3">
-                                <div className="w-10 h-10 rounded-lg bg-white/10 border border-white/20 flex items-center justify-center">
-                                  <Building2 className="w-5 h-5" />
-                                </div>
-                                <div>
-                                  <p className="text-xs text-white/70 uppercase tracking-wider">RERA ID</p>
-                                  <p className="font-bold text-lg" data-testid={`text-rera-${project.slug}`}>{project.reraId}</p>
-                                </div>
-                              </div>
-                              <div className="flex items-center gap-3">
-                                <div className="w-10 h-10 rounded-lg bg-white/10 border border-white/20 flex items-center justify-center">
-                                  <QrCode className="w-5 h-5" />
-                                </div>
-                                <div>
-                                  <p className="text-xs text-white/70 uppercase tracking-wider">RERA Verified</p>
-                                  <p className="font-bold text-sm">Scan QR Code</p>
-                                </div>
-                              </div>
-                            </div>
-                            <button
-                              onClick={() => setSelectedProject(project)}
-                              data-testid={`button-know-more-${project.slug}`}
-                              className="mt-6 px-8 py-3 bg-green-600 hover:bg-green-700 text-white font-bold rounded-lg transition transform hover:scale-105 inline-block"
-                            >
-                              Know More
-                            </button>
+                          <div>
+                            <p className="text-xs text-white/70 uppercase tracking-wider">Price</p>
+                            <p className="font-bold text-lg" data-testid={`text-price-${project.slug}`}>{project.pricePerSqft || project.price}</p>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 rounded-lg bg-white/10 border border-white/20 flex items-center justify-center">
+                            <Building2 className="w-5 h-5" />
+                          </div>
+                          <div>
+                            <p className="text-xs text-white/70 uppercase tracking-wider">RERA ID</p>
+                            <p className="font-bold text-lg" data-testid={`text-rera-${project.slug}`}>{project.reraId}</p>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 rounded-lg bg-white/10 border border-white/20 flex items-center justify-center">
+                            <QrCode className="w-5 h-5" />
+                          </div>
+                          <div>
+                            <p className="text-xs text-white/70 uppercase tracking-wider">RERA Verified</p>
+                            <p className="font-bold text-sm">Scan QR Code</p>
                           </div>
                         </div>
                       </div>
-                    </motion.div>
-                  ))}
+                      <button
+                        onClick={() => setSelectedProject(project)}
+                        data-testid={`button-know-more-${project.slug}`}
+                        className="mt-6 px-8 py-3 bg-amber-600 hover:bg-amber-700 text-white font-bold rounded-lg transition transform hover:scale-105 inline-block"
+                      >
+                        Know More
+                      </button>
+                    </div>
+                  </div>
                 </div>
-              ) : (
-                <div className="text-center py-16 text-gray-500 bg-gray-50 rounded-lg">
-                  <p className="text-lg">No completed projects in this category.</p>
-                </div>
-              )}
-            </section>
-            )}
-
-            {/* UPCOMING PROJECTS SECTION */}
-            {(selectedStatus === "all" || selectedStatus === "upcoming") && (
-            <section data-testid="section-upcoming-projects">
-              <div className="mb-12">
-                <div className="flex items-center gap-3 mb-3">
-                  <Zap className="w-7 h-7 text-orange-600" />
-                  <h2 className="font-serif text-3xl md:text-4xl font-bold text-gray-900">
-                    Upcoming Projects
-                  </h2>
-                </div>
-                <p className="text-gray-600 ml-10">Projects coming soon</p>
-                <div className="h-1 w-24 bg-orange-600 mt-4 ml-10" />
-              </div>
-
-              {upcomingFiltered.length > 0 ? (
-                <div className="space-y-8">
-                  {upcomingFiltered.map((project, index) => (
-                    <motion.div
-                      key={project.id}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.5, delay: index * 0.1 }}
-                      className="group"
-                    >
-                      <div className="relative h-[400px] md:h-[550px] rounded-xl overflow-hidden shadow-2xl">
-                        <img
-                          src={project.coverImage}
-                          alt={project.title}
-                          className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
-                        <div className="absolute inset-0 p-6 md:p-12 flex flex-col justify-between">
-                          <div className="flex gap-2 flex-wrap">
-                            <Badge className="bg-orange-600 text-white border-none font-semibold" data-testid={`badge-status-${project.slug}`}>
-                              COMING SOON
-                            </Badge>
-                            <Badge className="bg-white/20 text-white border border-white/30 font-semibold" data-testid={`badge-type-${project.slug}`}>
-                              {project.type}
-                            </Badge>
-                          </div>
-                          <div className="text-white space-y-4">
-                            <h2 className="font-serif text-3xl md:text-4xl font-bold leading-tight" data-testid={`text-title-${project.slug}`}>
-                              {project.title}
-                            </h2>
-                            <div className="flex flex-col gap-2 text-white/90">
-                              <div className="flex items-start gap-2">
-                                <MapPin className="w-5 h-5 flex-shrink-0 mt-0.5" />
-                                <div>
-                                  <p className="font-medium" data-testid={`text-address-${project.slug}`}>{project.address}</p>
-                                  <p className="text-sm text-white/70" data-testid={`text-landmark-${project.slug}`}>{project.landmark}</p>
-                                </div>
-                              </div>
-                            </div>
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
-                              <div className="flex items-center gap-3">
-                                <div className="w-10 h-10 rounded-lg bg-white/10 border border-white/20 flex items-center justify-center">
-                                  <DollarSign className="w-5 h-5" />
-                                </div>
-                                <div>
-                                  <p className="text-xs text-white/70 uppercase tracking-wider">Expected Price</p>
-                                  <p className="font-bold text-lg" data-testid={`text-price-${project.slug}`}>{project.price}</p>
-                                </div>
-                              </div>
-                              <div className="flex items-center gap-3">
-                                <div className="w-10 h-10 rounded-lg bg-white/10 border border-white/20 flex items-center justify-center">
-                                  <Building2 className="w-5 h-5" />
-                                </div>
-                                <div>
-                                  <p className="text-xs text-white/70 uppercase tracking-wider">Launch Date</p>
-                                  <p className="font-bold text-lg" data-testid={`text-launch-${project.slug}`}>{project.possessionDate || "TBA"}</p>
-                                </div>
-                              </div>
-                              <div className="flex items-center gap-3">
-                                <div className="w-10 h-10 rounded-lg bg-white/10 border border-white/20 flex items-center justify-center">
-                                  <Zap className="w-5 h-5" />
-                                </div>
-                                <div>
-                                  <p className="text-xs text-white/70 uppercase tracking-wider">Status</p>
-                                  <p className="font-bold text-sm">Pre-Register</p>
-                                </div>
-                              </div>
-                            </div>
-                            <button
-                              onClick={() => setSelectedProject(project)}
-                              data-testid={`button-know-more-${project.slug}`}
-                              className="mt-6 px-8 py-3 bg-orange-600 hover:bg-orange-700 text-white font-bold rounded-lg transition transform hover:scale-105 inline-block"
-                            >
-                              Learn More
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-              ) : (
-                <div className="text-center py-16 text-gray-500 bg-gray-50 rounded-lg">
-                  <p className="text-lg">No upcoming projects in this category.</p>
-                </div>
-              )}
-            </section>
-            )}
+              </motion.div>
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-16 text-gray-500 bg-gray-50 rounded-lg">
+            <p className="text-lg">No projects match the selected filters.</p>
           </div>
         )}
       </div>
