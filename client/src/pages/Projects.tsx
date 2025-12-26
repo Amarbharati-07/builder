@@ -81,10 +81,10 @@ export default function Projects() {
               key={cat.value}
               onClick={() => setSelectedType(cat.value)}
               data-testid={`button-category-${cat.value}`}
-              className={`px-6 py-2.5 rounded-lg font-semibold transition ${
+              className={`px-8 py-3 rounded-xl font-semibold transition ${
                 selectedType === cat.value
-                  ? "bg-amber-600 text-white"
-                  : "border-2 border-gray-300 text-gray-700 hover:border-amber-600"
+                  ? "bg-orange-600 text-white"
+                  : "bg-white border-2 border-gray-300 text-gray-700 hover:border-gray-400"
               }`}
             >
               {cat.label}
