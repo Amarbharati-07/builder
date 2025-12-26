@@ -61,7 +61,7 @@ export default function Projects() {
               data-testid={`button-status-${status.value}`}
               className={`px-8 py-3 rounded-xl font-semibold transition ${
                 selectedStatus === status.value
-                  ? "bg-amber-600 text-white"
+                  ? "bg-yellow-600 text-white"
                   : "bg-white border-2 border-black text-gray-900 hover:bg-gray-50"
               }`}
             >
